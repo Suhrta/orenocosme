@@ -1,6 +1,6 @@
 export function PhoneMockup() {
   return (
-    <div aria-hidden="true" className="max-h-[504px] overflow-hidden">
+    <div aria-hidden="true" className="max-h-[392px] overflow-hidden">
       <div
         className="relative mx-auto w-[272px] h-[560px] rounded-[48px] p-[5px]"
         style={{
