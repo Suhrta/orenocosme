@@ -1,65 +1,458 @@
-import Image from "next/image";
+import Link from "next/link";
+import { products, categories } from "@/lib/data";
+import { ProductCard } from "@/components/ProductCard";
+import { CategoryCard } from "@/components/CategoryCard";
+import { PhoneMockup } from "@/components/PhoneMockup";
+
+const features = [
+  {
+    icon: (
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M8 21h8M12 17v4M3.2 14.2l2.5-2.5M20.8 14.2l-2.5-2.5M18 8A6 6 0 0 0 6 8c0 4 3 6 3 8h6c0-2 3-4 3-8z" />
+      </svg>
+    ),
+    title: "ランキング",
+    desc: "人気アイテムを部門別にリアルタイムで更新",
+  },
+  {
+    icon: (
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        <path d="M8 10h8M8 14h4" />
+      </svg>
+    ),
+    title: "AIレビュー分析",
+    desc: "口コミをAIが分析してメリット・デメリットを整理",
+  },
+  {
+    icon: (
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <circle cx="11" cy="11" r="8" />
+        <path d="m21 21-4.3-4.3" />
+      </svg>
+    ),
+    title: "商品検索",
+    desc: "肌質・悩み・目的から自分に合う商品を検索",
+  },
+  {
+    icon: (
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+        <path d="M8 7h6M8 11h4" />
+      </svg>
+    ),
+    title: "特集・コラム",
+    desc: "スキンケアの基礎知識やトレンド情報をお届け",
+  },
+];
+
+const stats = [
+  {
+    icon: (
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      >
+        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+        <line x1="7" y1="7" x2="7.01" y2="7" />
+      </svg>
+    ),
+    value: "—",
+    suffix: "",
+    label: "掲載ブランド数",
+  },
+  {
+    icon: (
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      >
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        <path d="M8 10h8M8 14h4" />
+      </svg>
+    ),
+    value: "—",
+    suffix: "",
+    label: "AI分析済み商品",
+  },
+  {
+    icon: (
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      >
+        <rect x="2" y="3" width="20" height="14" rx="2" />
+        <path d="M8 21h8M12 17v4" />
+      </svg>
+    ),
+    value: "—",
+    suffix: "",
+    label: "掲載商品数",
+  },
+  {
+    icon: (
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      >
+        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+        <polyline points="17 6 23 6 23 12" />
+      </svg>
+    ),
+    value: "毎月更新",
+    suffix: "",
+    label: "データ更新",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      {/* Hero */}
+      <section className="bg-background-secondary">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6">
+                俺の肌に、
+                <br />
+                俺のコスメ。
+              </h1>
+              <p className="text-base md:text-lg text-foreground-muted mb-8 leading-relaxed">
+                メンズコスメの口コミ・レビュー・ランキングから
+                <br className="hidden sm:block" />
+                あなたに合ったアイテムが見つかる。
+              </p>
+              <Link
+                href="/products"
+                className="inline-flex items-center px-8 py-4 bg-foreground text-white font-medium rounded hover:bg-foreground/90 transition-colors"
+              >
+                今すぐチェックする
+              </Link>
+            </div>
+            <div className="hidden md:flex items-center justify-center gap-4">
+              <div className="w-40 h-56 bg-white rounded-lg shadow-sm flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-16 h-24 bg-background-secondary rounded mx-auto mb-2" />
+                  <p className="text-[10px] text-foreground-muted">
+                    ALL IN ONE GEL
+                  </p>
+                </div>
+              </div>
+              <div className="w-40 h-56 bg-white rounded-lg shadow-sm flex items-center justify-center -mt-8">
+                <div className="text-center">
+                  <div className="w-14 h-28 bg-background-secondary rounded mx-auto mb-2" />
+                  <p className="text-[10px] text-foreground-muted">
+                    BOOSTER SERUM
+                  </p>
+                </div>
+              </div>
+              <div className="w-40 h-56 bg-white rounded-lg shadow-sm flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-20 h-12 bg-background-secondary rounded mx-auto mb-2" />
+                  <p className="text-[10px] text-foreground-muted">
+                    MOISTURE CREAM
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Features */}
+      <section className="py-16 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {features.map((f) => (
+              <div key={f.title} className="text-center">
+                <div className="inline-flex items-center justify-center w-14 h-14 mb-4 text-foreground">
+                  {f.icon}
+                </div>
+                <h3 className="text-sm font-bold text-foreground mb-2">
+                  {f.title}
+                </h3>
+                <p className="text-xs text-foreground-muted leading-relaxed">
+                  {f.desc}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* AI Skin Diagnosis CTA */}
+      <section className="bg-background-secondary py-16 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="text-sm text-foreground-muted mb-2">
+                AIがあなたの肌を分析
+              </p>
+              <div className="flex items-center gap-3 mb-6">
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                  AI肌診断
+                </h2>
+                <span className="text-xs font-medium px-3 py-1 bg-foreground text-white rounded-full">
+                  無料
+                </span>
+              </div>
+              <p className="text-sm md:text-base text-foreground-muted leading-relaxed mb-8">
+                簡単な質問に答えるだけで、
+                <br />
+                あなたの肌質や肌の状態をAIが分析。
+                <br />
+                おすすめのケアやアイテムもご提案します。
+              </p>
+              <Link
+                href="#"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-foreground text-white font-medium rounded hover:bg-foreground/90 transition-colors"
+              >
+                診断をはじめる
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+            <div className="flex justify-center">
+              <PhoneMockup />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Categories */}
+      <section className="py-16 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold text-foreground">
+              注目のカテゴリー
+            </h2>
+            <Link
+              href="/products"
+              className="text-sm text-foreground-muted hover:text-foreground flex items-center gap-1 transition-colors"
+            >
+              すべて見る
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+            {categories.map((cat) => (
+              <CategoryCard key={cat.id} category={cat} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Products */}
+      <section className="bg-background-secondary py-16 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold text-foreground">
+              人気のメンズコスメ
+            </h2>
+            <Link
+              href="/products"
+              className="text-sm text-foreground-muted hover:text-foreground flex items-center gap-1 transition-colors"
+            >
+              すべて見る
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* AI Review Sample */}
+      <section className="py-16 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl font-bold text-foreground mb-3">
+              AIレビュー分析
+            </h2>
+            <p className="text-sm text-foreground-muted">
+              口コミをAIが分析し、メリット・デメリットを分かりやすく整理
+            </p>
+          </div>
+          <div className="max-w-3xl mx-auto bg-white rounded-lg border border-border p-6 md:p-8">
+            <div className="flex items-center gap-4 mb-6 pb-6 border-b border-border">
+              <div className="w-16 h-16 bg-background-secondary rounded-lg flex items-center justify-center shrink-0">
+                <div className="w-8 h-12 bg-border rounded" />
+              </div>
+              <div>
+                <p className="text-xs text-foreground-muted">BULK HOMME</p>
+                <p className="text-sm font-bold text-foreground">
+                  THE FACE WASH 洗顔料
+                </p>
+                <div className="flex items-center gap-1 mt-1">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <svg
+                      key={i}
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill={i < 4 ? "#111" : "#ddd"}
+                      stroke="none"
+                    >
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    </svg>
+                  ))}
+                  <span className="text-xs text-foreground-muted ml-1">
+                    4.2 (1,580件の口コミを分析)
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="w-6 h-6 rounded-full bg-green-100 text-green-700 flex items-center justify-center text-xs font-bold">
+                    +
+                  </span>
+                  <h4 className="text-sm font-bold text-foreground">
+                    メリット
+                  </h4>
+                </div>
+                <ul className="space-y-2">
+                  {products[0].ai_review_pros.map((pro, i) => (
+                    <li
+                      key={i}
+                      className="text-sm text-foreground-muted flex gap-2"
+                    >
+                      <span className="text-green-600 shrink-0">+</span>
+                      {pro}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="w-6 h-6 rounded-full bg-red-100 text-red-700 flex items-center justify-center text-xs font-bold">
+                    -
+                  </span>
+                  <h4 className="text-sm font-bold text-foreground">
+                    デメリット
+                  </h4>
+                </div>
+                <ul className="space-y-2">
+                  {products[0].ai_review_cons.map((con, i) => (
+                    <li
+                      key={i}
+                      className="text-sm text-foreground-muted flex gap-2"
+                    >
+                      <span className="text-red-600 shrink-0">-</span>
+                      {con}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="py-16 md:py-20 border-t border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat) => (
+              <div key={stat.label} className="text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 mb-3 text-foreground">
+                  {stat.icon}
+                </div>
+                <p className="text-sm text-foreground-muted mb-1">
+                  {stat.label}
+                </p>
+                <p className="text-2xl md:text-3xl font-bold text-foreground">
+                  {stat.value}
+                  <span className="text-base font-medium">{stat.suffix}</span>
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
