@@ -166,32 +166,36 @@ export default async function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-background-secondary">
-        <img
-          src="/images/hero-bg.png"
-          alt=""
-          className="absolute inset-0 w-full h-full object-contain object-right"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-white from-25% via-white/60 via-45% to-transparent" />
-        <div className="relative min-h-[400px] md:min-h-[480px] lg:min-h-[540px] flex items-center">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 w-full">
-            <div className="max-w-md md:max-w-lg">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-4">
-                俺の肌に、
-                <br />
-                俺のコスメ。
-              </h1>
-              <p className="text-base md:text-lg text-foreground-muted mb-6 leading-relaxed">
-                メンズコスメの口コミ・レビュー・ランキングから
-                <br className="hidden sm:block" />
-                あなたに合ったアイテムが見つかる。
-              </p>
-              <Link
-                href="/products"
-                className="inline-flex items-center px-8 py-4 bg-foreground text-white font-medium rounded hover:bg-foreground/90 transition-colors"
-              >
-                今すぐチェックする
-              </Link>
+      <section>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-lg bg-background-secondary">
+            <img
+              src="/images/hero-bg.png"
+              alt=""
+              className="absolute inset-0 w-full h-full object-contain object-right"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-white from-25% via-white/60 via-45% to-transparent" />
+            <div className="relative min-h-[400px] md:min-h-[480px] lg:min-h-[540px] flex items-center">
+              <div className="px-8 md:px-12 py-12 md:py-16 w-full">
+                <div className="max-w-md md:max-w-lg">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-4">
+                    俺の肌に、
+                    <br />
+                    俺のコスメ。
+                  </h1>
+                  <p className="text-base md:text-lg text-foreground-muted mb-6 leading-relaxed">
+                    メンズコスメの口コミ・レビュー・ランキングから
+                    <br className="hidden sm:block" />
+                    あなたに合ったアイテムが見つかる。
+                  </p>
+                  <Link
+                    href="/products"
+                    className="inline-flex items-center px-8 py-4 bg-foreground text-white font-medium rounded hover:bg-foreground/90 transition-colors"
+                  >
+                    今すぐチェックする
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
