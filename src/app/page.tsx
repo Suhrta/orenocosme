@@ -166,15 +166,17 @@ export default async function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-background-secondary">
-        <img
-          src="/images/hero-bg.png"
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="relative min-h-[400px] md:min-h-[480px] lg:min-h-[540px] flex items-center">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 w-full">
-            <div className="max-w-md md:max-w-lg">
+      <section>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-lg bg-background-secondary">
+            <img
+              src="/images/hero-bg.png"
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="relative min-h-[400px] md:min-h-[480px] lg:min-h-[540px] flex items-center">
+              <div className="px-8 md:px-12 py-12 md:py-16 w-full">
+                <div className="max-w-md md:max-w-lg">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-4">
                 俺の肌に、
                 <br />
@@ -191,6 +193,8 @@ export default async function Home() {
               >
                 今すぐチェックする
               </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
