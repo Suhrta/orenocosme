@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { products, categories } from "@/lib/data";
+import { getProducts, getCategories } from "@/lib/data";
 import { ProductCard } from "@/components/ProductCard";
 import { CategoryCard } from "@/components/CategoryCard";
 import { PhoneMockup } from "@/components/PhoneMockup";
@@ -157,20 +157,25 @@ const stats = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const [products, categories] = await Promise.all([
+    getProducts(4),
+    getCategories(),
+  ]);
+
   return (
     <>
       {/* Hero */}
       <section className="bg-background-secondary">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-4">
                 俺の肌に、
                 <br />
                 俺のコスメ。
               </h1>
-              <p className="text-base md:text-lg text-foreground-muted mb-8 leading-relaxed">
+              <p className="text-base md:text-lg text-foreground-muted mb-6 leading-relaxed">
                 メンズコスメの口コミ・レビュー・ランキングから
                 <br className="hidden sm:block" />
                 あなたに合ったアイテムが見つかる。
@@ -213,12 +218,12 @@ export default function Home() {
       </section>
 
       {/* Features */}
-      <section className="py-16 md:py-20">
+      <section className="py-10 md:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {features.map((f) => (
               <div key={f.title} className="text-center">
-                <div className="inline-flex items-center justify-center w-14 h-14 mb-4 text-foreground">
+                <div className="inline-flex items-center justify-center w-12 h-12 mb-3 text-foreground">
                   {f.icon}
                 </div>
                 <h3 className="text-sm font-bold text-foreground mb-2">
@@ -234,14 +239,14 @@ export default function Home() {
       </section>
 
       {/* AI Skin Diagnosis CTA */}
-      <section className="bg-background-secondary py-16 md:py-20">
+      <section className="bg-background-secondary py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <p className="text-sm text-foreground-muted mb-2">
                 AIがあなたの肌を分析
               </p>
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-3 mb-4">
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground">
                   AI肌診断
                 </h2>
@@ -249,7 +254,7 @@ export default function Home() {
                   無料
                 </span>
               </div>
-              <p className="text-sm md:text-base text-foreground-muted leading-relaxed mb-8">
+              <p className="text-sm md:text-base text-foreground-muted leading-relaxed mb-6">
                 簡単な質問に答えるだけで、
                 <br />
                 あなたの肌質や肌の状態をAIが分析。
@@ -281,9 +286,9 @@ export default function Home() {
       </section>
 
       {/* Categories */}
-      <section className="py-16 md:py-20">
+      <section className="py-10 md:py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-foreground">
               注目のカテゴリー
             </h2>
@@ -304,7 +309,7 @@ export default function Home() {
               </svg>
             </Link>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
             {categories.map((cat) => (
               <CategoryCard key={cat.id} category={cat} />
             ))}
@@ -313,9 +318,9 @@ export default function Home() {
       </section>
 
       {/* Popular Products */}
-      <section className="bg-background-secondary py-16 md:py-20">
+      <section className="bg-background-secondary py-10 md:py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-foreground">
               人気のメンズコスメ
             </h2>
@@ -336,7 +341,7 @@ export default function Home() {
               </svg>
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -345,18 +350,18 @@ export default function Home() {
       </section>
 
       {/* AI Review Sample */}
-      <section className="py-16 md:py-20">
+      <section className="py-10 md:py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl font-bold text-foreground mb-3">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-foreground mb-2">
               AIレビュー分析
             </h2>
             <p className="text-sm text-foreground-muted">
               口コミをAIが分析し、メリット・デメリットを分かりやすく整理
             </p>
           </div>
-          <div className="max-w-3xl mx-auto bg-white rounded-lg border border-border p-6 md:p-8">
-            <div className="flex items-center gap-4 mb-6 pb-6 border-b border-border">
+          <div className="max-w-3xl mx-auto bg-white rounded-lg border border-border p-5 md:p-6">
+            <div className="flex items-center gap-4 mb-4 pb-4 border-b border-border">
               <div className="w-16 h-16 bg-background-secondary rounded-lg flex items-center justify-center shrink-0">
                 <div className="w-8 h-12 bg-border rounded" />
               </div>
@@ -386,7 +391,7 @@ export default function Home() {
             </div>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <div className="flex items-center gap-2 mb-3">
+                <div className="flex items-center gap-2 mb-2">
                   <span className="w-6 h-6 rounded-full bg-green-100 text-green-700 flex items-center justify-center text-xs font-bold">
                     +
                   </span>
@@ -395,7 +400,12 @@ export default function Home() {
                   </h4>
                 </div>
                 <ul className="space-y-2">
-                  {products[0].ai_review_pros.map((pro, i) => (
+                  {[
+                    "泡立ちが非常に良く、少量で濃密な泡が作れる",
+                    "洗い上がりがさっぱりしつつ、つっぱらない絶妙なバランス",
+                    "香りが控えめで使いやすい",
+                    "パッケージがおしゃれでバスルームに置いても映える",
+                  ].map((pro, i) => (
                     <li
                       key={i}
                       className="text-sm text-foreground-muted flex gap-2"
@@ -407,7 +417,7 @@ export default function Home() {
                 </ul>
               </div>
               <div>
-                <div className="flex items-center gap-2 mb-3">
+                <div className="flex items-center gap-2 mb-2">
                   <span className="w-6 h-6 rounded-full bg-red-100 text-red-700 flex items-center justify-center text-xs font-bold">
                     -
                   </span>
@@ -416,7 +426,11 @@ export default function Home() {
                   </h4>
                 </div>
                 <ul className="space-y-2">
-                  {products[0].ai_review_cons.map((con, i) => (
+                  {[
+                    "価格がドラッグストア商品と比べると高め",
+                    "チューブが柔らかく、最後まで使い切りにくい",
+                    "泡立てネットが別途必要",
+                  ].map((con, i) => (
                     <li
                       key={i}
                       className="text-sm text-foreground-muted flex gap-2"
@@ -433,12 +447,12 @@ export default function Home() {
       </section>
 
       {/* Stats */}
-      <section className="py-16 md:py-20 border-t border-border">
+      <section className="py-10 md:py-12 border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 mb-3 text-foreground">
+                <div className="inline-flex items-center justify-center w-12 h-12 mb-2 text-foreground">
                   {stat.icon}
                 </div>
                 <p className="text-sm text-foreground-muted mb-1">

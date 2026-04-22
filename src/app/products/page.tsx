@@ -1,20 +1,19 @@
-"use client";
-
-import { useState } from "react";
-import { products, categories } from "@/lib/data";
+import Link from "next/link";
+import {
+  getProducts,
+  getProductsByCategory,
+  getCategories,
+} from "@/lib/data";
 import { ProductCard } from "@/components/ProductCard";
 
-export default function ProductsPage() {
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+export default async function ProductsPage(props: PageProps<"/products">) {
+  const searchParams = await props.searchParams;
+  const categorySlug = typeof searchParams.category === "string" ? searchParams.category : null;
 
-  const filtered =
-    selectedCategory === "all"
-      ? products
-      : products.filter(
-          (p) =>
-            p.category_id ===
-            categories.find((c) => c.slug === selectedCategory)?.id
-        );
+  const [allCategories, products] = await Promise.all([
+    getCategories(),
+    categorySlug ? getProductsByCategory(categorySlug) : getProducts(),
+  ]);
 
   return (
     <>
@@ -36,36 +35,36 @@ export default function ProductsPage() {
               </h2>
               <ul className="space-y-1">
                 <li>
-                  <button
-                    onClick={() => setSelectedCategory("all")}
-                    className={`w-full text-left px-3 py-2 text-sm rounded transition-colors ${
-                      selectedCategory === "all"
+                  <Link
+                    href="/products"
+                    className={`block w-full text-left px-3 py-2 text-sm rounded transition-colors ${
+                      !categorySlug
                         ? "bg-foreground text-white font-medium"
                         : "text-foreground-muted hover:bg-background-secondary"
                     }`}
                   >
                     すべて
-                  </button>
+                  </Link>
                 </li>
-                {categories.map((cat) => (
+                {allCategories.map((cat) => (
                   <li key={cat.id}>
-                    <button
-                      onClick={() => setSelectedCategory(cat.slug)}
-                      className={`w-full text-left px-3 py-2 text-sm rounded transition-colors ${
-                        selectedCategory === cat.slug
+                    <Link
+                      href={`/products?category=${cat.slug}`}
+                      className={`block w-full text-left px-3 py-2 text-sm rounded transition-colors ${
+                        categorySlug === cat.slug
                           ? "bg-foreground text-white font-medium"
                           : "text-foreground-muted hover:bg-background-secondary"
                       }`}
                     >
                       {cat.name}
-                    </button>
+                    </Link>
                   </li>
                 ))}
               </ul>
             </aside>
 
             <div className="flex-1">
-              {filtered.length === 0 ? (
+              {products.length === 0 ? (
                 <div className="text-center py-20">
                   <p className="text-foreground-muted">
                     該当する商品がありません
@@ -73,7 +72,7 @@ export default function ProductsPage() {
                 </div>
               ) : (
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                  {filtered.map((product) => (
+                  {products.map((product) => (
                     <ProductCard key={product.id} product={product} />
                   ))}
                 </div>

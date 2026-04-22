@@ -1,7 +1,9 @@
 import Link from "next/link";
-import { brands } from "@/lib/data";
+import { getBrands } from "@/lib/data";
 
-export default function BrandsPage() {
+export default async function BrandsPage() {
+  const brands = await getBrands();
+
   return (
     <>
       <section className="bg-background-secondary py-12">
@@ -35,12 +37,14 @@ export default function BrandsPage() {
                     </h2>
                   </div>
                 </div>
-                <p className="text-sm text-foreground-muted leading-relaxed mb-4">
-                  {brand.description}
-                </p>
+                {brand.description && (
+                  <p className="text-sm text-foreground-muted leading-relaxed mb-4">
+                    {brand.description}
+                  </p>
+                )}
                 <div className="flex items-center justify-between">
                   <Link
-                    href={`/products`}
+                    href={`/products?category=`}
                     className="text-sm font-medium text-foreground hover:text-foreground-muted transition-colors flex items-center gap-1"
                   >
                     商品を見る
@@ -55,14 +59,16 @@ export default function BrandsPage() {
                       <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
                   </Link>
-                  <a
-                    href={brand.official_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-foreground-muted hover:text-foreground transition-colors"
-                  >
-                    公式サイト
-                  </a>
+                  {brand.official_url && (
+                    <a
+                      href={brand.official_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-foreground-muted hover:text-foreground transition-colors"
+                    >
+                      公式サイト
+                    </a>
+                  )}
                 </div>
               </div>
             ))}

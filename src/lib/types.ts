@@ -3,8 +3,8 @@ export type Brand = {
   name: string;
   slug: string;
   logo_url: string | null;
-  description: string;
-  official_url: string;
+  description: string | null;
+  official_url: string | null;
   created_at: string;
 };
 
@@ -21,29 +21,34 @@ export type Product = {
   category_id: number;
   name: string;
   slug: string;
-  price: number;
-  volume: string;
-  image_url: string;
-  description: string;
-  ingredients: string;
-  features: string[];
-  affiliate_links: Record<string, string>;
-  ai_review_pros: string[];
-  ai_review_cons: string[];
-  amazon_rating: number;
-  amazon_review_count: number;
-  rakuten_rating: number;
-  rakuten_review_count: number;
+  price: number | null;
+  volume: string | null;
+  image_url: string | null;
+  description: string | null;
+  ingredients: string | null;
+  features: string[] | null;
+  affiliate_links: Record<string, string> | null;
+  ai_review_pros: string[] | null;
+  ai_review_cons: string[] | null;
+  amazon_rating: number | null;
+  amazon_review_count: number | null;
+  rakuten_rating: number | null;
+  rakuten_review_count: number | null;
   created_at: string;
+};
+
+export type ProductWithRelations = Product & {
+  brands: Brand | null;
+  categories: Category | null;
 };
 
 export type Article = {
   id: number;
   title: string;
   slug: string;
-  body: string;
-  category: string;
-  related_product_ids: number[];
-  published_at: string;
+  body: string | null;
+  category: string | null;
+  related_product_ids: number[] | null;
+  published_at: string | null;
   created_at: string;
 };
