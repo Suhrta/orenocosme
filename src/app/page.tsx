@@ -174,7 +174,8 @@ export default async function Home() {
               alt=""
               className="absolute inset-0 w-full h-full object-contain object-right"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-white from-25% via-white/60 via-45% to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-white from-20% to-transparent to-50%" />
+            <div className="absolute inset-y-0 left-[20%] w-[30%] bg-gradient-to-r from-white/70 to-transparent" />
             <div className="relative min-h-[400px] md:min-h-[480px] lg:min-h-[540px] flex items-center">
               <div className="px-8 md:px-12 py-12 md:py-16 w-full">
                 <div className="max-w-md md:max-w-lg">
