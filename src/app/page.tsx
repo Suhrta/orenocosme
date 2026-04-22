@@ -174,9 +174,10 @@ export default async function Home() {
               alt=""
               className="absolute inset-0 w-full h-full object-cover"
             />
+            <div className="absolute inset-0 bg-white/50 md:bg-transparent" />
             <div className="relative min-h-[400px] md:min-h-[480px] lg:min-h-[540px] flex items-center">
               <div className="px-8 md:px-12 py-12 md:py-16 w-full">
-                <div className="max-w-md md:max-w-lg bg-white/80 backdrop-blur-sm rounded-lg p-6 md:bg-transparent md:backdrop-blur-none md:p-0 md:rounded-none">
+                <div className="max-w-md md:max-w-lg">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-4">
                 俺の肌に、
                 <br />
