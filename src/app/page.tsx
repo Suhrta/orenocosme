@@ -166,10 +166,27 @@ export default async function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-background-secondary">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
+      <section className="relative overflow-hidden">
+        {/* Mobile: image on top */}
+        <div className="md:hidden aspect-[16/10] relative">
+          <img
+            src="/images/hero-bg.png"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
+        {/* Desktop: full background */}
+        <div
+          className="relative md:min-h-[480px] lg:min-h-[520px] flex items-center"
+        >
+          <img
+            src="/images/hero-bg.png"
+            alt=""
+            className="hidden md:block absolute inset-0 w-full h-full object-cover object-right"
+          />
+          <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent" />
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 w-full">
+            <div className="md:max-w-lg">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-4">
                 俺の肌に、
                 <br />
@@ -186,32 +203,6 @@ export default async function Home() {
               >
                 今すぐチェックする
               </Link>
-            </div>
-            <div className="hidden md:flex items-center justify-center gap-4">
-              <div className="w-40 h-56 bg-white rounded-lg shadow-sm flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-16 h-24 bg-background-secondary rounded mx-auto mb-2" />
-                  <p className="text-[10px] text-foreground-muted">
-                    ALL IN ONE GEL
-                  </p>
-                </div>
-              </div>
-              <div className="w-40 h-56 bg-white rounded-lg shadow-sm flex items-center justify-center -mt-8">
-                <div className="text-center">
-                  <div className="w-14 h-28 bg-background-secondary rounded mx-auto mb-2" />
-                  <p className="text-[10px] text-foreground-muted">
-                    BOOSTER SERUM
-                  </p>
-                </div>
-              </div>
-              <div className="w-40 h-56 bg-white rounded-lg shadow-sm flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-20 h-12 bg-background-secondary rounded mx-auto mb-2" />
-                  <p className="text-[10px] text-foreground-muted">
-                    MOISTURE CREAM
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
