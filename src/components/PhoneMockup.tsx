@@ -2,7 +2,7 @@ export function PhoneMockup() {
   return (
     <div aria-hidden="true">
       <div
-        className="relative mx-auto w-[272px] h-[560px] rounded-[48px] p-[5px]"
+        className="relative mx-auto w-[272px] h-[460px] rounded-[48px] p-[5px]"
         style={{
           background:
             "linear-gradient(135deg, #4A5568 0%, #1A202C 45%, #2D3748 100%)",
@@ -122,13 +122,7 @@ export function PhoneMockup() {
             ))}
           </div>
 
-          {/* Spacer */}
-          <div className="flex-1" />
-
-          {/* Home indicator */}
-          <div className="flex justify-center">
-            <div className="w-28 h-1 bg-[#ddd] rounded-full" />
-          </div>
+          <div className="h-5 shrink-0" />
         </div>
       </div>
     </div>
