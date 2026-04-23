@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Sun, Palette } from "lucide-react";
+import { Sun } from "lucide-react";
 import { Category } from "@/lib/types";
 import { categoryEnNames } from "@/lib/data";
 
@@ -9,10 +9,10 @@ const categoryImages: Record<string, string> = {
   toner: "/images/products/toner.png",
   emulsion: "/images/products/emulsion.png",
   "all-in-one": "/images/products/all-in-one.png",
+  "bb-cream": "/images/products/bb-cream.png",
 };
 
 const categoryIcons: Record<string, React.ReactNode> = {
-  "bb-cream": <Palette size={48} strokeWidth={1.5} />,
   sunscreen: <Sun size={48} strokeWidth={1.5} />,
 };
 
