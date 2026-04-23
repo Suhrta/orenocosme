@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProductBySlug, getProducts } from "@/lib/data";
@@ -39,8 +40,19 @@ export default async function ProductDetailPage(
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
         <div className="grid md:grid-cols-2 gap-12">
-          <div className="aspect-square bg-background-secondary rounded-lg flex items-center justify-center p-8">
-            <div className="w-24 h-36 bg-border rounded" />
+          <div className="aspect-square bg-background-secondary rounded-lg flex items-center justify-center p-8 relative overflow-hidden">
+            {product.image_url ? (
+              <Image
+                src={product.image_url}
+                alt={product.name}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-contain p-8"
+                priority
+              />
+            ) : (
+              <div className="w-24 h-36 bg-border rounded" />
+            )}
           </div>
 
           <div>

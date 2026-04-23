@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ProductWithRelations } from "@/lib/types";
 
@@ -7,8 +8,18 @@ export function ProductCard({ product }: { product: ProductWithRelations }) {
       href={`/products/${product.slug}`}
       className="group block bg-white rounded-lg border border-border overflow-hidden hover:shadow-lg transition-shadow"
     >
-      <div className="aspect-square bg-background-secondary flex items-center justify-center p-6">
-        <div className="w-16 h-24 bg-border rounded" />
+      <div className="aspect-square bg-background-secondary flex items-center justify-center p-6 relative overflow-hidden">
+        {product.image_url ? (
+          <Image
+            src={product.image_url}
+            alt={product.name}
+            fill
+            sizes="(max-width: 768px) 50vw, 33vw"
+            className="object-contain p-4"
+          />
+        ) : (
+          <div className="w-16 h-24 bg-border rounded" />
+        )}
       </div>
       <div className="p-3">
         {product.brands && (
