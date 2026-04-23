@@ -23,8 +23,8 @@ const footerLinks = [
     links: [
       { label: "お問い合わせ", href: "#" },
       { label: "利用規約", href: "#" },
-      { label: "プライバシーポリシー", href: "#" },
-      { label: "運営会社", href: "#" },
+      { label: "プライバシーポリシー", href: "/privacy" },
+      { label: "運営者情報", href: "/about" },
     ],
   },
 ];
