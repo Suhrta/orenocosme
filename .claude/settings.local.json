@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/products)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/products/1)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/brands)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000/products)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000/products/1)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000/brands)",
+      "Bash(curl -s http://localhost:3000/)",
+      "Bash(powershell *)",
+      "WebFetch(domain:smaplan.com)",
+      "Bash(npm install *)",
+      "WebFetch(domain:github.com)",
+      "Bash(gh search *)",
+      "Bash(xargs grep *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(npx supabase *)",
+      "Bash(npx vercel *)",
+      "Bash(vercel env *)",
+      "Bash(vercel whoami *)",
+      "Bash(curl -s http://localhost:3000/products/bulk-homme-face-wash)",
+      "Bash(git commit *)",
+      "Bash(curl -s http://localhost:3000/products/null-bb-cream)",
+      "Bash(node *)",
+      "Skill(claude-api)",
+      "Read(//c/Users/suhr5/AppData/Local/Temp/claude/C--Users-suhr5-orenocosme/df90160e-34e5-4405-995c-c210866adb30/tasks/**)",
+      "Bash(npx next *)",
+      "Bash(npx kill-port *)",
+      "Bash(taskkill //f //im node.exe)",
+      "Bash(curl -s http://localhost:3000/images/products/bulk-homme-the-face-wash.jpg -o /dev/null -w \"%{http_code} %{size_download}\")"
+    ]
+  }
+}
