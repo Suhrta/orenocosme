@@ -156,3 +156,32 @@ insert into products (brand_id, category_id, name, slug, price, volume) values
 insert into products (brand_id, category_id, name, slug, price, volume) values
   (20, 1, '洗顔フォーム',                    'success-face-wash',         550, '120g'),
   (20, 2, '化粧水',                          'success-toner',             880, '180ml');
+
+-- =============================================
+-- AI Review Pros / Cons
+-- =============================================
+
+UPDATE products SET
+  ai_review_pros = ARRAY['少量で濃密な泡が作れて肌あたりが優しい', '洗い上がりがさっぱりしつつつっぱり感が少ない', '爽やかなシトラス系の香りが万人受けする'],
+  ai_review_cons = ARRAY['チューブの口が大きく出しすぎる・キャップ式で片手で使えない', 'ドラッグストア商品と比べて価格が高い', '乾燥肌の人は洗い上がりのつっぱり感が気になるとの声も']
+WHERE slug = 'bulk-homme-face-wash';
+
+UPDATE products SET
+  ai_review_pros = ARRAY['トップクラスの保湿力でしっとり仕上がる', 'ポンプ式で量の調節がしやすく使い勝手が良い', '無香料・無着色で肌への刺激が少ない'],
+  ai_review_cons = ARRAY['ジュレ状で粘度が高く肌なじみがやや遅い', 'ドラッグストア商品と比べるとやや割高', 'ごく少数だが肌に合わず刺激を感じたという声も']
+WHERE slug = 'orbis-mr-lotion';
+
+UPDATE products SET
+  ai_review_pros = ARRAY['1本で化粧水・乳液・美容液が完了しスキンケアが楽', '150g 1,490円と圧倒的なコスパの良さ', '低刺激で敏感肌でもピリつきにくいと好評'],
+  ai_review_cons = ARRAY['冬場や乾燥が酷い人には保湿力が物足りない', 'チューブタイプでポンプ式に比べると使いにくい', '無香料のため香りでリフレッシュしたい人には物足りない']
+WHERE slug = 'muji-all-in-one-gel';
+
+UPDATE products SET
+  ai_review_pros = ARRAY['カバー力が高くニキビ跡やクマを自然に隠せる', 'テカリにくく長時間崩れにくいと好評', '男性の肌色に合わせた色味で自然に仕上がる'],
+  ai_review_cons = ARRAY['塗りすぎると厚塗り感が出やすい', 'クレンジングでしっかり落とす必要がある', '色展開が少なく肌色に合わない場合がある']
+WHERE slug = 'null-bb-cream';
+
+UPDATE products SET
+  ai_review_pros = ARRAY['高い保湿力で乾燥肌の男性から特に好評', 'エイジングケア成分配合で30代以上に人気', '高級感のあるパッケージで洗面台に映える'],
+  ai_review_cons = ARRAY['価格が4,000円台と他のメンズコスメより高め', '少量で伸びが良いが容量の割に減りが早い', '香りの好みが分かれるとの声がある']
+WHERE slug = 'shiseido-men-emulsion';
