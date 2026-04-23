@@ -185,3 +185,13 @@ UPDATE products SET
   ai_review_pros = ARRAY['高い保湿力で乾燥肌の男性から特に好評', 'エイジングケア成分配合で30代以上に人気', '高級感のあるパッケージで洗面台に映える'],
   ai_review_cons = ARRAY['価格が4,000円台と他のメンズコスメより高め', '少量で伸びが良いが容量の割に減りが早い', '香りの好みが分かれるとの声がある']
 WHERE slug = 'shiseido-men-emulsion';
+
+-- =============================================
+-- Amazon Ratings
+-- =============================================
+
+UPDATE products SET amazon_rating = 4.2, amazon_review_count = 105 WHERE slug = 'bulk-homme-face-wash';
+UPDATE products SET amazon_rating = 4.4, amazon_review_count = 678 WHERE slug = 'orbis-mr-lotion';
+UPDATE products SET amazon_rating = 4.4, amazon_review_count = 204 WHERE slug = 'muji-all-in-one-gel';
+UPDATE products SET amazon_rating = 4.0, amazon_review_count = 6173 WHERE slug = 'null-bb-cream';
+UPDATE products SET amazon_rating = 4.5, amazon_review_count = 75 WHERE slug = 'shiseido-men-emulsion';
