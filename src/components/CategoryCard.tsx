@@ -31,7 +31,7 @@ export function CategoryCard({ category }: { category: Category }) {
             alt={category.name}
             fill
             sizes="(max-width: 640px) 33vw, 16vw"
-            className={`object-cover ${category.slug === "bb-cream" ? "object-left" : ""}`}
+            className={`object-cover ${category.slug === "bb-cream" ? "object-right" : ""}`}
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-foreground">
