@@ -101,3 +101,30 @@ export const getProductsByBrand = unstable_cache(
   ["products-by-brand"],
   { revalidate: REVALIDATE }
 );
+
+export const getRankedProducts = unstable_cache(
+  async (categorySlug?: string): Promise<ProductWithRelations[]> => {
+    let query = supabase
+      .from("products")
+      .select("*, brands(*), categories(*)")
+      .not("amazon_rating", "is", null)
+      .gte("amazon_review_count", 50)
+      .order("amazon_rating", { ascending: false })
+      .order("amazon_review_count", { ascending: false });
+
+    if (categorySlug) {
+      const { data: cat } = await supabase
+        .from("categories")
+        .select("id")
+        .eq("slug", categorySlug)
+        .single();
+      if (!cat) return [];
+      query = query.eq("category_id", cat.id);
+    }
+
+    const { data } = await query;
+    return (data as ProductWithRelations[]) ?? [];
+  },
+  ["ranked-products"],
+  { revalidate: REVALIDATE }
+);
