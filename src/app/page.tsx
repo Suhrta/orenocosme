@@ -228,7 +228,7 @@ export default async function Home() {
       </section>
 
       {/* Features */}
-      <section className="bg-background-secondary py-10 md:py-12">
+      <section className="py-10 md:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4">
             {features.map((f, i) => {
