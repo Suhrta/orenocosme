@@ -6,10 +6,8 @@ import { useState } from "react";
 const navItems = [
   { label: "ランキング", href: "/ranking" },
   { label: "商品検索", href: "/products" },
-  { label: "レビュー", href: "#" },
-  { label: "特集", href: "#" },
   { label: "診断", href: "/diagnosis" },
-  { label: "コラム", href: "#" },
+  { label: "コラム", href: "/articles" },
 ];
 
 export function Header() {

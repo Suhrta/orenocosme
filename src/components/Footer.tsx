@@ -4,17 +4,15 @@ const footerLinks = [
   {
     title: "サービス",
     links: [
-      { label: "ランキング", href: "#" },
+      { label: "ランキング", href: "/ranking" },
       { label: "商品検索", href: "/products" },
-      { label: "レビュー", href: "#" },
       { label: "AI肌診断", href: "/diagnosis" },
     ],
   },
   {
     title: "コンテンツ",
     links: [
-      { label: "特集", href: "#" },
-      { label: "コラム", href: "#" },
+      { label: "コラム", href: "/articles" },
       { label: "ブランド一覧", href: "/brands" },
     ],
   },
