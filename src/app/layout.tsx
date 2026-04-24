@@ -33,6 +33,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "./",
   },
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
+  },
   verification: {
     google: "SkjBxjLv2pAcLHZFANQMzW2eczSbQOJIejDPeOtlx2o",
   },
