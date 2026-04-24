@@ -92,7 +92,7 @@ const features = [
     ),
     title: "特集・コラム",
     desc: "スキンケアの基礎知識やトレンド情報をお届け",
-    href: "#",
+    href: "/articles",
   },
 ];
 

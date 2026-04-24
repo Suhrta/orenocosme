@@ -11,7 +11,7 @@ const siteInfo = [
   { label: "サイト名", value: "オレのコスメ" },
   { label: "URL", value: "https://oreno-cosme.com", isLink: true },
   { label: "運営者", value: "個人運営（運営者名）" },
-  { label: "お問い合わせ", value: "contact@example.com" },
+  { label: "お問い合わせ", value: "contact@oreno-cosme.com" },
 ];
 
 export default function AboutPage() {

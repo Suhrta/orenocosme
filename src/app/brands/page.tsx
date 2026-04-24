@@ -74,7 +74,7 @@ export default async function BrandsPage() {
                 )}
                 <div className="flex items-center justify-between">
                   <Link
-                    href={`/products?category=`}
+                    href={`/products?brand=${brand.slug}`}
                     className="text-sm font-medium text-foreground hover:text-foreground-muted transition-colors flex items-center gap-1"
                   >
                     商品を見る

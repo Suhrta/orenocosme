@@ -4,12 +4,20 @@ import { supabase } from "@/lib/supabase";
 const BASE_URL = "https://oreno-cosme.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [{ data: products }, { data: categories }, { data: brands }] =
-    await Promise.all([
-      supabase.from("products").select("slug, created_at"),
-      supabase.from("categories").select("slug"),
-      supabase.from("brands").select("slug"),
-    ]);
+  const [
+    { data: products },
+    { data: categories },
+    { data: brands },
+    { data: articles },
+  ] = await Promise.all([
+    supabase.from("products").select("slug, created_at"),
+    supabase.from("categories").select("slug"),
+    supabase.from("brands").select("slug"),
+    supabase
+      .from("articles")
+      .select("slug, published_at")
+      .not("published_at", "is", null),
+  ]);
 
   const staticPages: MetadataRoute.Sitemap = [
     {
@@ -46,6 +54,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.3,
     },
+    {
+      url: `${BASE_URL}/diagnosis`,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/articles`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    {
+      url: `${BASE_URL}/terms`,
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
+    {
+      url: `${BASE_URL}/contact`,
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
   ];
 
   const productPages: MetadataRoute.Sitemap = (products ?? []).map((p) => ({
@@ -69,5 +98,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...productPages, ...categoryPages, ...brandPages];
+  const articlePages: MetadataRoute.Sitemap = (articles ?? []).map((a) => ({
+    url: `${BASE_URL}/articles/${a.slug}`,
+    lastModified: a.published_at ? new Date(a.published_at) : new Date(),
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  return [
+    ...staticPages,
+    ...productPages,
+    ...categoryPages,
+    ...brandPages,
+    ...articlePages,
+  ];
 }

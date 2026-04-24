@@ -41,7 +41,7 @@ const sections = [
     title: "お問い合わせ",
     content:
       "本ポリシーに関するお問い合わせは、下記メールアドレスまでご連絡ください。",
-    email: "contact@example.com",
+    email: "contact@oreno-cosme.com",
   },
 ];
 
