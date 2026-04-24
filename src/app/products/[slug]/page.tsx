@@ -240,81 +240,61 @@ export default async function ProductDetailPage(
                 楽天市場で購入
               </a>
             </div>
+
+            {/* AI Review - Pros & Cons */}
+            {((product.ai_review_pros && product.ai_review_pros.length > 0) ||
+              (product.ai_review_cons && product.ai_review_cons.length > 0)) && (
+              <div className="mt-8 space-y-4">
+                {product.ai_review_pros && product.ai_review_pros.length > 0 && (
+                  <div className="bg-green-50 rounded-lg p-5">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="w-6 h-6 rounded-full bg-green-200 text-green-800 flex items-center justify-center text-xs font-bold">
+                        +
+                      </span>
+                      <h3 className="text-sm font-bold text-foreground">
+                        メリット
+                      </h3>
+                    </div>
+                    <ul className="space-y-2">
+                      {product.ai_review_pros.map((pro, i) => (
+                        <li
+                          key={i}
+                          className="text-sm text-foreground flex gap-2"
+                        >
+                          <span className="text-green-600 shrink-0 font-bold">+</span>
+                          {pro}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {product.ai_review_cons && product.ai_review_cons.length > 0 && (
+                  <div className="bg-red-50 rounded-lg p-5">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="w-6 h-6 rounded-full bg-red-200 text-red-800 flex items-center justify-center text-xs font-bold">
+                        -
+                      </span>
+                      <h3 className="text-sm font-bold text-foreground">
+                        デメリット
+                      </h3>
+                    </div>
+                    <ul className="space-y-2">
+                      {product.ai_review_cons.map((con, i) => (
+                        <li
+                          key={i}
+                          className="text-sm text-foreground flex gap-2"
+                        >
+                          <span className="text-red-600 shrink-0 font-bold">-</span>
+                          {con}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
-
-        {/* AI Review Analysis */}
-        {((product.ai_review_pros && product.ai_review_pros.length > 0) ||
-          (product.ai_review_cons && product.ai_review_cons.length > 0)) && (
-          <div className="mt-16">
-            <h2 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              >
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                <path d="M8 10h8M8 14h4" />
-              </svg>
-              AIレビュー分析
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {product.ai_review_pros && product.ai_review_pros.length > 0 && (
-                <div className="bg-green-50 rounded-lg p-6">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="w-7 h-7 rounded-full bg-green-200 text-green-800 flex items-center justify-center text-sm font-bold">
-                      +
-                    </span>
-                    <h3 className="text-base font-bold text-foreground">
-                      メリット
-                    </h3>
-                  </div>
-                  <ul className="space-y-3">
-                    {product.ai_review_pros.map((pro, i) => (
-                      <li
-                        key={i}
-                        className="text-sm text-foreground flex gap-2"
-                      >
-                        <span className="text-green-600 shrink-0 font-bold">
-                          +
-                        </span>
-                        {pro}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {product.ai_review_cons && product.ai_review_cons.length > 0 && (
-                <div className="bg-red-50 rounded-lg p-6">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="w-7 h-7 rounded-full bg-red-200 text-red-800 flex items-center justify-center text-sm font-bold">
-                      -
-                    </span>
-                    <h3 className="text-base font-bold text-foreground">
-                      デメリット
-                    </h3>
-                  </div>
-                  <ul className="space-y-3">
-                    {product.ai_review_cons.map((con, i) => (
-                      <li
-                        key={i}
-                        className="text-sm text-foreground flex gap-2"
-                      >
-                        <span className="text-red-600 shrink-0 font-bold">
-                          -
-                        </span>
-                        {con}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
       </section>
     </>
   );
