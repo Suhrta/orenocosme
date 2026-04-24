@@ -18,7 +18,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex flex-col leading-tight">
-            <span className="text-lg font-bold tracking-tight text-foreground">
+            <span className="text-lg font-bold tracking-tight text-foreground font-brush">
               オレのコスメ
             </span>
             <span className="text-[10px] text-foreground-muted tracking-wide">

@@ -17,6 +17,7 @@
   --color-border: var(--border);
   --color-accent: var(--accent);
   --font-sans: var(--font-noto-sans-jp);
+  --font-brush: var(--font-yuji-syuku);
 }
 
 body {

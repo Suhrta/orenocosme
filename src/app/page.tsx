@@ -172,7 +172,7 @@ export default async function Home() {
             <div className="relative min-h-[400px] md:min-h-[480px] lg:min-h-[540px] flex items-center">
               <div className="px-8 md:px-12 py-12 md:py-16 w-full">
                 <div className="max-w-md md:max-w-lg">
-              <h1 className="animate-fade-in-up text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-4">
+              <h1 className="animate-fade-in-up text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-4 font-brush">
                 俺の肌に、
                 <br />
                 俺のコスメ。
@@ -239,7 +239,7 @@ export default async function Home() {
                 AIがあなたの肌を分析
               </p>
               <div className="flex items-center gap-3 mb-4">
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground font-brush">
                   AI肌診断
                 </h2>
                 <span className="text-xs font-medium px-3 py-1 bg-foreground text-white rounded-full">
@@ -282,7 +282,7 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-2xl font-bold text-foreground">
+              <h2 className="text-2xl font-bold text-foreground font-brush">
                 注目のカテゴリー
               </h2>
               <div className="w-10 h-[3px] bg-foreground mt-2" />
@@ -317,7 +317,7 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-2xl font-bold text-foreground">
+              <h2 className="text-2xl font-bold text-foreground font-brush">
                 人気のメンズコスメ
               </h2>
               <div className="w-10 h-[3px] bg-foreground mt-2" />
@@ -351,7 +351,7 @@ export default async function Home() {
       <section className="py-10 md:py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-foreground mb-2">
+            <h2 className="text-2xl font-bold text-foreground mb-2 font-brush">
               AIレビュー分析
             </h2>
             <div className="w-10 h-[3px] bg-foreground mx-auto mb-3" />

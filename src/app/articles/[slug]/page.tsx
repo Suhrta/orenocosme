@@ -105,7 +105,7 @@ export default async function ArticleDetailPage(
               {categoryLabels[article.category] ?? article.category}
             </span>
           )}
-          <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+          <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-3 font-brush">
             {article.title}
           </h1>
           {article.published_at && (
@@ -120,12 +120,12 @@ export default async function ArticleDetailPage(
             remarkPlugins={[remarkGfm]}
             components={{
               h2: ({ children }) => (
-                <h2 className="text-xl font-bold text-foreground mt-10 mb-4">
+                <h2 className="text-xl font-bold text-foreground mt-10 mb-4 font-brush">
                   {children}
                 </h2>
               ),
               h3: ({ children }) => (
-                <h3 className="text-lg font-bold text-foreground mt-8 mb-3">
+                <h3 className="text-lg font-bold text-foreground mt-8 mb-3 font-brush">
                   {children}
                 </h3>
               ),
