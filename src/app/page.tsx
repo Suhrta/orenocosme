@@ -172,19 +172,19 @@ export default async function Home() {
             <div className="relative min-h-[400px] md:min-h-[480px] lg:min-h-[540px] flex items-center">
               <div className="px-8 md:px-12 py-12 md:py-16 w-full">
                 <div className="max-w-md md:max-w-lg">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-4">
+              <h1 className="animate-fade-in-up text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-4">
                 俺の肌に、
                 <br />
                 俺のコスメ。
               </h1>
-              <p className="text-base md:text-lg text-foreground-muted mb-6 leading-relaxed">
+              <p className="animate-fade-in-up-delay-1 text-base md:text-lg text-foreground-muted mb-6 leading-relaxed">
                 メンズコスメの口コミ・レビュー・ランキングから
                 <br className="hidden sm:block" />
                 あなたに合ったアイテムが見つかる。
               </p>
               <Link
                 href="/products"
-                className="inline-flex items-center px-8 py-4 bg-foreground text-white font-medium rounded hover:bg-foreground/90 transition-colors"
+                className="animate-fade-in-up-delay-2 inline-flex items-center px-8 py-4 bg-foreground text-white font-medium rounded hover:bg-foreground/90 transition-colors"
               >
                 今すぐチェックする
               </Link>
@@ -281,9 +281,12 @@ export default async function Home() {
       <section className="py-10 md:py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-foreground">
-              注目のカテゴリー
-            </h2>
+            <div>
+              <h2 className="text-2xl font-bold text-foreground">
+                注目のカテゴリー
+              </h2>
+              <div className="w-10 h-[3px] bg-foreground mt-2" />
+            </div>
             <Link
               href="/products"
               className="text-sm text-foreground-muted hover:text-foreground flex items-center gap-1 transition-colors"
@@ -313,9 +316,12 @@ export default async function Home() {
       <section className="bg-background-secondary py-10 md:py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-foreground">
-              人気のメンズコスメ
-            </h2>
+            <div>
+              <h2 className="text-2xl font-bold text-foreground">
+                人気のメンズコスメ
+              </h2>
+              <div className="w-10 h-[3px] bg-foreground mt-2" />
+            </div>
             <Link
               href="/products"
               className="text-sm text-foreground-muted hover:text-foreground flex items-center gap-1 transition-colors"
@@ -348,6 +354,7 @@ export default async function Home() {
             <h2 className="text-2xl font-bold text-foreground mb-2">
               AIレビュー分析
             </h2>
+            <div className="w-10 h-[3px] bg-foreground mx-auto mb-3" />
             <p className="text-sm text-foreground-muted">
               口コミをAIが分析し、メリット・デメリットを分かりやすく整理
             </p>

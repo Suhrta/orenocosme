@@ -75,7 +75,7 @@ export default async function RankingPage(props: PageProps<"/ranking">) {
                   <Link
                     key={product.id}
                     href={`/products/${product.slug}`}
-                    className="flex items-start gap-4 sm:gap-6 bg-white border border-border rounded-lg p-4 sm:p-6 hover:shadow-md transition-shadow"
+                    className="flex items-start gap-4 sm:gap-6 bg-white border border-border rounded-lg p-4 sm:p-6 shadow-sm hover:shadow-md hover:bg-background-secondary/50 transition-all duration-200"
                   >
                     <div
                       className={`shrink-0 flex items-center justify-center rounded-full ${

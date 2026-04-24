@@ -6,7 +6,7 @@ export function ProductCard({ product }: { product: ProductWithRelations }) {
   return (
     <Link
       href={`/products/${product.slug}`}
-      className="group block bg-white rounded-lg border border-border overflow-hidden hover:shadow-lg transition-shadow"
+      className="group block bg-white rounded-lg border border-border overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
     >
       <div className="aspect-square bg-background-secondary flex items-center justify-center p-6 relative overflow-hidden">
         {product.image_url ? (
