@@ -31,6 +31,7 @@ const features = [
     ),
     title: "ランキング",
     desc: "人気アイテムを部門別にリアルタイムで更新",
+    href: "/ranking",
   },
   {
     icon: (
@@ -50,6 +51,7 @@ const features = [
     ),
     title: "AIレビュー分析",
     desc: "口コミをAIが分析してメリット・デメリットを整理",
+    href: "/products",
   },
   {
     icon: (
@@ -69,6 +71,7 @@ const features = [
     ),
     title: "商品検索",
     desc: "肌質・悩み・目的から自分に合う商品を検索",
+    href: "/products",
   },
   {
     icon: (
@@ -88,6 +91,7 @@ const features = [
     ),
     title: "特集・コラム",
     desc: "スキンケアの基礎知識やトレンド情報をお届け",
+    href: "#",
   },
 ];
 
@@ -224,22 +228,36 @@ export default async function Home() {
       </section>
 
       {/* Features */}
-      <section className="py-10 md:py-12">
+      <section className="bg-background-secondary py-10 md:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {features.map((f) => (
-              <div key={f.title} className="text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 mb-3 text-foreground">
-                  {f.icon}
+          <div className="grid grid-cols-2 md:grid-cols-4">
+            {features.map((f, i) => {
+              const isLast = i === features.length - 1;
+              const inner = (
+                <div
+                  className={`text-center px-4 py-4 transition-colors ${
+                    f.href !== "#" ? "hover:bg-foreground/5 cursor-pointer" : ""
+                  } ${!isLast ? "border-r border-border" : ""}`}
+                >
+                  <div className="inline-flex items-center justify-center w-12 h-12 mb-3 text-foreground">
+                    {f.icon}
+                  </div>
+                  <h3 className="text-sm font-bold text-foreground mb-2">
+                    {f.title}
+                  </h3>
+                  <p className="text-xs text-foreground-muted leading-relaxed">
+                    {f.desc}
+                  </p>
                 </div>
-                <h3 className="text-sm font-bold text-foreground mb-2">
-                  {f.title}
-                </h3>
-                <p className="text-xs text-foreground-muted leading-relaxed">
-                  {f.desc}
-                </p>
-              </div>
-            ))}
+              );
+              return f.href !== "#" ? (
+                <Link key={f.title} href={f.href}>
+                  {inner}
+                </Link>
+              ) : (
+                <div key={f.title}>{inner}</div>
+              );
+            })}
           </div>
         </div>
       </section>
