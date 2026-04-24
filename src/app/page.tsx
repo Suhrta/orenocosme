@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { getProducts, getCategories } from "@/lib/data";
+import { getProducts, getCategories, getProductBySlug } from "@/lib/data";
 import { ProductCard } from "@/components/ProductCard";
 import { CategoryCard } from "@/components/CategoryCard";
 import { PhoneMockup } from "@/components/PhoneMockup";
@@ -180,9 +181,10 @@ const jsonLd = {
 };
 
 export default async function Home() {
-  const [products, categories] = await Promise.all([
+  const [products, categories, sampleProduct] = await Promise.all([
     getProducts(4),
     getCategories(),
+    getProductBySlug("bulk-homme-face-wash"),
   ]);
 
   return (
@@ -384,22 +386,38 @@ export default async function Home() {
               口コミをAIが分析し、メリット・デメリットを分かりやすく整理
             </p>
           </div>
+          {sampleProduct && (
           <div className="max-w-3xl mx-auto bg-white rounded-lg border border-border p-5 md:p-6">
             <div className="flex items-center gap-4 mb-4 pb-4 border-b border-border">
               <Link
-                href="/products/bulk-homme-face-wash"
-                className="w-16 h-16 bg-background-secondary rounded-lg flex items-center justify-center shrink-0 hover:bg-border transition-colors"
+                href={`/products/${sampleProduct.slug}`}
+                className="w-16 h-16 bg-background-secondary rounded-lg shrink-0 hover:bg-border transition-colors relative overflow-hidden"
               >
-                <div className="w-8 h-12 bg-border rounded" />
+                {sampleProduct.image_url ? (
+                  <Image
+                    src={sampleProduct.image_url}
+                    alt={sampleProduct.name}
+                    fill
+                    sizes="64px"
+                    className="object-contain p-1"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <div className="w-8 h-12 bg-border rounded" />
+                  </div>
+                )}
               </Link>
               <div>
-                <p className="text-xs text-foreground-muted">BULK HOMME</p>
+                <p className="text-xs text-foreground-muted">
+                  {sampleProduct.brands?.name}
+                </p>
                 <Link
-                  href="/products/bulk-homme-face-wash"
+                  href={`/products/${sampleProduct.slug}`}
                   className="text-sm font-bold text-foreground hover:underline"
                 >
-                  THE FACE WASH 洗顔料
+                  {sampleProduct.name}
                 </Link>
+                {sampleProduct.amazon_rating != null && (
                 <div className="flex items-center gap-1 mt-1">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <svg
@@ -407,19 +425,23 @@ export default async function Home() {
                       width="12"
                       height="12"
                       viewBox="0 0 24 24"
-                      fill={i < 4 ? "#111" : "#ddd"}
+                      fill={i < Math.round(sampleProduct.amazon_rating!) ? "#111" : "#ddd"}
                       stroke="none"
                     >
                       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                     </svg>
                   ))}
                   <span className="text-xs text-foreground-muted ml-1">
-                    4.2 (1,580件の口コミを分析)
+                    {sampleProduct.amazon_rating}
+                    {sampleProduct.amazon_review_count != null &&
+                      ` (${sampleProduct.amazon_review_count.toLocaleString()}件の口コミを分析)`}
                   </span>
                 </div>
+                )}
               </div>
             </div>
             <div className="grid md:grid-cols-2 gap-6">
+              {sampleProduct.ai_review_pros && sampleProduct.ai_review_pros.length > 0 && (
               <div>
                 <div className="flex items-center gap-2 mb-2">
                   <span className="w-6 h-6 rounded-full bg-green-100 text-green-700 flex items-center justify-center text-xs font-bold">
@@ -430,12 +452,7 @@ export default async function Home() {
                   </h4>
                 </div>
                 <ul className="space-y-2">
-                  {[
-                    "泡立ちが非常に良く、少量で濃密な泡が作れる",
-                    "洗い上がりがさっぱりしつつ、つっぱらない絶妙なバランス",
-                    "香りが控えめで使いやすい",
-                    "パッケージがおしゃれでバスルームに置いても映える",
-                  ].map((pro, i) => (
+                  {sampleProduct.ai_review_pros.map((pro, i) => (
                     <li
                       key={i}
                       className="text-sm text-foreground-muted flex gap-2"
@@ -446,6 +463,8 @@ export default async function Home() {
                   ))}
                 </ul>
               </div>
+              )}
+              {sampleProduct.ai_review_cons && sampleProduct.ai_review_cons.length > 0 && (
               <div>
                 <div className="flex items-center gap-2 mb-2">
                   <span className="w-6 h-6 rounded-full bg-red-100 text-red-700 flex items-center justify-center text-xs font-bold">
@@ -456,11 +475,7 @@ export default async function Home() {
                   </h4>
                 </div>
                 <ul className="space-y-2">
-                  {[
-                    "価格がドラッグストア商品と比べると高め",
-                    "チューブが柔らかく、最後まで使い切りにくい",
-                    "泡立てネットが別途必要",
-                  ].map((con, i) => (
+                  {sampleProduct.ai_review_cons.map((con, i) => (
                     <li
                       key={i}
                       className="text-sm text-foreground-muted flex gap-2"
@@ -471,10 +486,11 @@ export default async function Home() {
                   ))}
                 </ul>
               </div>
+              )}
             </div>
             <div className="mt-4 pt-4 border-t border-border text-center">
               <Link
-                href="/products/bulk-homme-face-wash"
+                href={`/products/${sampleProduct.slug}`}
                 className="text-sm font-medium text-foreground hover:text-foreground-muted transition-colors inline-flex items-center gap-1"
               >
                 この商品の詳細を見る
@@ -491,6 +507,7 @@ export default async function Home() {
               </Link>
             </div>
           </div>
+          )}
         </div>
       </section>
 
