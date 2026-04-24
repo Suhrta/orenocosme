@@ -198,11 +198,15 @@ export default async function Home() {
       {/* Features */}
       <section className="py-10 md:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 border-t border-l border-border">
-            {features.map((f) => {
+          <div className="grid grid-cols-2 md:grid-cols-4">
+            {features.map((f, i) => {
               const inner = (
                 <div
-                  className={`text-center px-4 py-4 border-r border-b border-border transition-colors ${
+                  className={`text-center px-4 py-6 h-full transition-colors ${
+                    i % 2 === 0 ? "border-r border-border md:border-r-0" : ""
+                  } ${i < 2 ? "border-b border-border md:border-b-0" : ""} ${
+                    i < 3 ? "md:border-r md:border-border" : ""
+                  } ${
                     f.href !== "#" ? "hover:bg-foreground/5 cursor-pointer" : ""
                   }`}
                 >
