@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Yuji_Syuku, Zen_Antique } from "next/font/google";
+import { Noto_Sans_JP, Zen_Antique } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/Header";
@@ -11,12 +11,6 @@ const notoSansJP = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
   subsets: ["latin"],
   weight: ["400", "500", "700", "900"],
-});
-
-const yujiSyuku = Yuji_Syuku({
-  variable: "--font-yuji-syuku",
-  subsets: ["latin"],
-  weight: "400",
 });
 
 const zenAntique = Zen_Antique({
@@ -60,7 +54,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className={`${notoSansJP.variable} ${yujiSyuku.variable} ${zenAntique.variable} antialiased`}>
+    <html lang="ja" className={`${notoSansJP.variable} ${zenAntique.variable} antialiased`}>
       <head>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
