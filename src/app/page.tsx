@@ -386,14 +386,20 @@ export default async function Home() {
           </div>
           <div className="max-w-3xl mx-auto bg-white rounded-lg border border-border p-5 md:p-6">
             <div className="flex items-center gap-4 mb-4 pb-4 border-b border-border">
-              <div className="w-16 h-16 bg-background-secondary rounded-lg flex items-center justify-center shrink-0">
+              <Link
+                href="/products/bulk-homme-face-wash"
+                className="w-16 h-16 bg-background-secondary rounded-lg flex items-center justify-center shrink-0 hover:bg-border transition-colors"
+              >
                 <div className="w-8 h-12 bg-border rounded" />
-              </div>
+              </Link>
               <div>
                 <p className="text-xs text-foreground-muted">BULK HOMME</p>
-                <p className="text-sm font-bold text-foreground">
+                <Link
+                  href="/products/bulk-homme-face-wash"
+                  className="text-sm font-bold text-foreground hover:underline"
+                >
                   THE FACE WASH 洗顔料
-                </p>
+                </Link>
                 <div className="flex items-center gap-1 mt-1">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <svg
@@ -465,6 +471,24 @@ export default async function Home() {
                   ))}
                 </ul>
               </div>
+            </div>
+            <div className="mt-4 pt-4 border-t border-border text-center">
+              <Link
+                href="/products/bulk-homme-face-wash"
+                className="text-sm font-medium text-foreground hover:text-foreground-muted transition-colors inline-flex items-center gap-1"
+              >
+                この商品の詳細を見る
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </Link>
             </div>
           </div>
         </div>
