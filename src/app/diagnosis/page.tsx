@@ -202,7 +202,7 @@ export default function DiagnosisPage() {
               { label: "ハリ・弾力", score: result.scores.firmness },
             ].map((item) => (
               <div key={item.label} className="flex items-center gap-3">
-                <span className="text-sm text-foreground-muted w-20 shrink-0 text-right">
+                <span className="text-sm text-foreground-muted w-24 shrink-0 text-right">
                   {item.label}
                 </span>
                 <div className="flex-1 h-2 bg-background-secondary rounded-full overflow-hidden">
