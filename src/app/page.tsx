@@ -1,8 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getProducts, getCategories } from "@/lib/data";
 import { ProductCard } from "@/components/ProductCard";
 import { CategoryCard } from "@/components/CategoryCard";
 import { PhoneMockup } from "@/components/PhoneMockup";
+
+export const metadata: Metadata = {
+  description:
+    "メンズコスメ選びに迷ったら、ここ。AIレビュー分析×商品データベースで、あなたに合ったメンズコスメが見つかる。",
+  openGraph: {
+    title: "オレのコスメ | メンズコスメの総合ガイド",
+  },
+};
 
 const features = [
   {
@@ -157,6 +166,15 @@ const stats = [
   },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "オレのコスメ",
+  url: "https://oreno-cosme.com",
+  description:
+    "メンズコスメ選びに迷ったら、ここ。AIレビュー分析×商品データベースで、あなたに合ったメンズコスメが見つかる。",
+};
+
 export default async function Home() {
   const [products, categories] = await Promise.all([
     getProducts(4),
@@ -165,6 +183,10 @@ export default async function Home() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero */}
       <section>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

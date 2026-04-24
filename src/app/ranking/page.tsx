@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getCategories, getRankedProducts } from "@/lib/data";
+
+export const metadata: Metadata = {
+  title: "メンズコスメランキング",
+  description:
+    "Amazon評価が高いメンズコスメをカテゴリ別にランキング形式で紹介。口コミ分析に基づいた信頼できるランキング。",
+};
 
 export default async function RankingPage(props: PageProps<"/ranking">) {
   const searchParams = await props.searchParams;

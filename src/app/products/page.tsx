@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   getProducts,
@@ -5,6 +6,12 @@ import {
   getCategories,
 } from "@/lib/data";
 import { ProductCard } from "@/components/ProductCard";
+
+export const metadata: Metadata = {
+  title: "メンズコスメ商品一覧",
+  description:
+    "メンズコスメの商品一覧。洗顔料・化粧水・乳液・オールインワン・BBクリーム・日焼け止めなどカテゴリ別に探せます。",
+};
 
 export default async function ProductsPage(props: PageProps<"/products">) {
   const searchParams = await props.searchParams;

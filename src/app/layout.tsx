@@ -11,9 +11,25 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: "オレのコスメ｜メンズコスメ総合サイト",
+  metadataBase: new URL("https://oreno-cosme.com"),
+  title: {
+    default: "オレのコスメ | メンズコスメの総合ガイド",
+    template: "%s | オレのコスメ",
+  },
   description:
-    "メンズコスメの口コミ・レビュー・ランキングからあなたに合ったアイテムが見つかる。AIレビュー分析で商品選びをサポート。",
+    "メンズコスメ選びに迷ったら、ここ。AIレビュー分析×商品データベースで、あなたに合ったメンズコスメが見つかる。",
+  openGraph: {
+    siteName: "オレのコスメ",
+    type: "website",
+    locale: "ja_JP",
+    images: [{ url: "/images/hero-bg.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+  alternates: {
+    canonical: "./",
+  },
 };
 
 export default function RootLayout({

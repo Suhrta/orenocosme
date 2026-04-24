@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -6,6 +7,32 @@ import { getProductBySlug, getProducts } from "@/lib/data";
 export async function generateStaticParams() {
   const products = await getProducts();
   return products.map((p) => ({ slug: p.slug }));
+}
+
+export async function generateMetadata(
+  props: PageProps<"/products/[slug]">
+): Promise<Metadata> {
+  const { slug } = await props.params;
+  const product = await getProductBySlug(slug);
+  if (!product) return {};
+
+  const brandName = product.brands?.name;
+  const title = brandName
+    ? `${product.name} | ${brandName}`
+    : product.name;
+  const description = `${product.name}の口コミ・評判をAI分析。メリット・デメリットをわかりやすく紹介。`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title: `${title} | オレのコスメ`,
+      description,
+      ...(product.image_url && {
+        images: [{ url: product.image_url }],
+      }),
+    },
+  };
 }
 
 export default async function ProductDetailPage(
@@ -19,8 +46,41 @@ export default async function ProductDetailPage(
   const brand = product.brands;
   const category = product.categories;
 
+  const jsonLd: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.description ?? undefined,
+    ...(product.image_url && { image: product.image_url }),
+    ...(brand && {
+      brand: { "@type": "Brand", name: brand.name },
+    }),
+    ...(product.price != null && {
+      offers: {
+        "@type": "Offer",
+        price: product.price,
+        priceCurrency: "JPY",
+        availability: "https://schema.org/InStock",
+      },
+    }),
+    ...(product.amazon_rating != null && {
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: product.amazon_rating,
+        bestRating: 5,
+        ...(product.amazon_review_count != null && {
+          reviewCount: product.amazon_review_count,
+        }),
+      },
+    }),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <nav className="text-xs text-foreground-muted flex items-center gap-1 flex-wrap">
           <Link href="/" className="hover:text-foreground transition-colors">

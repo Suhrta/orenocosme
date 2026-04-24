@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "プライバシーポリシー｜オレのコスメ",
-  description: "オレのコスメのプライバシーポリシーページです。個人情報の取り扱い、Cookie・アクセス解析、アフィリエイトプログラム、免責事項について記載しています。",
+  title: "プライバシーポリシー",
+  description:
+    "オレのコスメのプライバシーポリシーページです。個人情報の取り扱い、Cookie・アクセス解析、アフィリエイトプログラム、免責事項について記載しています。",
 };
 
 const sections = [

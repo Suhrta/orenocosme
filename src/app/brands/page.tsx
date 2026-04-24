@@ -1,11 +1,41 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getBrands } from "@/lib/data";
+
+export const metadata: Metadata = {
+  title: "メンズコスメブランド一覧",
+  description:
+    "取り扱いメンズコスメブランドの一覧。各ブランドの特徴や商品ラインナップを紹介。",
+};
 
 export default async function BrandsPage() {
   const brands = await getBrands();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "トップ",
+        item: "https://oreno-cosme.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "ブランド一覧",
+        item: "https://oreno-cosme.com/brands",
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <section className="bg-background-secondary py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">

@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "運営者情報｜オレのコスメ",
-  description: "オレのコスメの運営者情報ページです。サイト概要、運営者、お問い合わせ先について記載しています。",
+  title: "運営者情報",
+  description:
+    "オレのコスメの運営者情報ページです。サイト概要、運営者、お問い合わせ先について記載しています。",
 };
 
 const siteInfo = [
