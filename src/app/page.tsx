@@ -198,14 +198,13 @@ export default async function Home() {
       {/* Features */}
       <section className="py-10 md:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4">
-            {features.map((f, i) => {
-              const isLast = i === features.length - 1;
+          <div className="grid grid-cols-2 md:grid-cols-4 border-t border-l border-border">
+            {features.map((f) => {
               const inner = (
                 <div
-                  className={`text-center px-4 py-4 transition-colors ${
+                  className={`text-center px-4 py-4 border-r border-b border-border transition-colors ${
                     f.href !== "#" ? "hover:bg-foreground/5 cursor-pointer" : ""
-                  } ${!isLast ? "border-r border-border" : ""}`}
+                  }`}
                 >
                   <div className="inline-flex items-center justify-center w-12 h-12 mb-3 text-foreground">
                     {f.icon}
@@ -234,11 +233,11 @@ export default async function Home() {
       <section className="bg-background-secondary py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-4 items-center">
-            <div className="md:justify-self-end">
+            <div className="text-center md:text-left md:justify-self-end">
               <p className="text-sm text-foreground-muted mb-2">
                 AIがあなたの肌を分析
               </p>
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground font-brush">
                   AI肌診断
                 </h2>
@@ -356,7 +355,7 @@ export default async function Home() {
             </h2>
             <div className="w-10 h-[3px] bg-foreground mx-auto mb-3" />
             <p className="text-sm text-foreground-muted">
-              口コミをAIが分析し、メリット・デメリットを分かりやすく整理
+              AIが口コミのメリデメを分析
             </p>
           </div>
           <AIReviewCarousel products={reviewedProducts} />
