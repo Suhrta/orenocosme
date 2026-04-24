@@ -149,8 +149,12 @@ ${JSON.stringify(productList)}
     });
   } catch (err) {
     console.error("Diagnosis API error:", err);
-    const message =
+    const errMessage =
       err instanceof Error ? err.message : "不明なエラーが発生しました";
-    return NextResponse.json({ error: message }, { status: 500 });
+    const errName = err instanceof Error ? err.name : "UnknownError";
+    return NextResponse.json(
+      { error: errMessage, errorType: errName },
+      { status: 500 }
+    );
   }
 }
