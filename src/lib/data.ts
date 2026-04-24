@@ -129,6 +129,21 @@ export const getRankedProducts = unstable_cache(
   { revalidate: REVALIDATE }
 );
 
+export const getReviewedProducts = unstable_cache(
+  async (limit = 5): Promise<ProductWithRelations[]> => {
+    const { data } = await supabase
+      .from("products")
+      .select("*, brands(*), categories(*)")
+      .not("ai_review_pros", "is", null)
+      .not("amazon_rating", "is", null)
+      .order("amazon_review_count", { ascending: false })
+      .limit(limit);
+    return (data as ProductWithRelations[]) ?? [];
+  },
+  ["reviewed-products"],
+  { revalidate: REVALIDATE }
+);
+
 export const getArticles = unstable_cache(
   async (): Promise<Article[]> => {
     const { data } = await supabase

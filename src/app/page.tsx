@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import { getProducts, getCategories, getProductBySlug, getBrands } from "@/lib/data";
+import { getProducts, getCategories, getReviewedProducts, getBrands } from "@/lib/data";
 import { ProductCard } from "@/components/ProductCard";
 import { CategoryCard } from "@/components/CategoryCard";
 import { PhoneMockup } from "@/components/PhoneMockup";
+import { AIReviewCarousel } from "@/components/AIReviewCarousel";
 
 export const metadata: Metadata = {
   description:
@@ -133,11 +133,11 @@ const jsonLd = {
 };
 
 export default async function Home() {
-  const [products, categories, sampleProduct, allProducts, brands] =
+  const [products, categories, reviewedProducts, allProducts, brands] =
     await Promise.all([
       getProducts(4),
       getCategories(),
-      getProductBySlug("bulk-homme-face-wash"),
+      getReviewedProducts(5),
       getProducts(),
       getBrands(),
     ]);
@@ -359,128 +359,7 @@ export default async function Home() {
               口コミをAIが分析し、メリット・デメリットを分かりやすく整理
             </p>
           </div>
-          {sampleProduct && (
-          <div className="max-w-3xl mx-auto bg-white rounded-lg border border-border p-5 md:p-6">
-            <div className="flex items-center gap-4 mb-4 pb-4 border-b border-border">
-              <Link
-                href={`/products/${sampleProduct.slug}`}
-                className="w-16 h-16 bg-background-secondary rounded-lg shrink-0 hover:bg-border transition-colors relative overflow-hidden"
-              >
-                {sampleProduct.image_url ? (
-                  <Image
-                    src={sampleProduct.image_url}
-                    alt={sampleProduct.name}
-                    fill
-                    sizes="64px"
-                    className="object-contain p-1"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="w-8 h-12 bg-border rounded" />
-                  </div>
-                )}
-              </Link>
-              <div>
-                <p className="text-xs text-foreground-muted">
-                  {sampleProduct.brands?.name}
-                </p>
-                <Link
-                  href={`/products/${sampleProduct.slug}`}
-                  className="text-sm font-bold text-foreground hover:underline"
-                >
-                  {sampleProduct.name}
-                </Link>
-                {sampleProduct.amazon_rating != null && (
-                <div className="flex items-center gap-1 mt-1">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <svg
-                      key={i}
-                      width="12"
-                      height="12"
-                      viewBox="0 0 24 24"
-                      fill={i < Math.round(sampleProduct.amazon_rating!) ? "#111" : "#ddd"}
-                      stroke="none"
-                    >
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                  ))}
-                  <span className="text-xs text-foreground-muted ml-1">
-                    {sampleProduct.amazon_rating}
-                    {sampleProduct.amazon_review_count != null &&
-                      ` (${sampleProduct.amazon_review_count.toLocaleString()}件の口コミを分析)`}
-                  </span>
-                </div>
-                )}
-              </div>
-            </div>
-            <div className="grid md:grid-cols-2 gap-6">
-              {sampleProduct.ai_review_pros && sampleProduct.ai_review_pros.length > 0 && (
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="w-6 h-6 rounded-full bg-green-100 text-green-700 flex items-center justify-center text-xs font-bold">
-                    +
-                  </span>
-                  <h4 className="text-sm font-bold text-foreground">
-                    メリット
-                  </h4>
-                </div>
-                <ul className="space-y-2">
-                  {sampleProduct.ai_review_pros.map((pro, i) => (
-                    <li
-                      key={i}
-                      className="text-sm text-foreground-muted flex gap-2"
-                    >
-                      <span className="text-green-600 shrink-0">+</span>
-                      {pro}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              )}
-              {sampleProduct.ai_review_cons && sampleProduct.ai_review_cons.length > 0 && (
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="w-6 h-6 rounded-full bg-red-100 text-red-700 flex items-center justify-center text-xs font-bold">
-                    -
-                  </span>
-                  <h4 className="text-sm font-bold text-foreground">
-                    デメリット
-                  </h4>
-                </div>
-                <ul className="space-y-2">
-                  {sampleProduct.ai_review_cons.map((con, i) => (
-                    <li
-                      key={i}
-                      className="text-sm text-foreground-muted flex gap-2"
-                    >
-                      <span className="text-red-600 shrink-0">-</span>
-                      {con}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              )}
-            </div>
-            <div className="mt-4 pt-4 border-t border-border text-center">
-              <Link
-                href={`/products/${sampleProduct.slug}`}
-                className="text-sm font-medium text-foreground hover:text-foreground-muted transition-colors inline-flex items-center gap-1"
-              >
-                この商品の詳細を見る
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
-          </div>
-          )}
+          <AIReviewCarousel products={reviewedProducts} />
         </div>
       </section>
 
