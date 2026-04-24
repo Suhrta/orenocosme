@@ -66,13 +66,8 @@ export function PhoneMockup() {
               }}
             />
 
-            {/* Title */}
-            <h2 className="text-[13px] font-bold text-[#111] text-center mt-2 mb-4">
-              AI肌診断結果
-            </h2>
-
             {/* Skin Type */}
-            <div className="text-center mb-3">
+            <div className="text-center mb-3 mt-4">
               <span className="inline-block text-[8px] font-medium px-2 py-0.5 bg-[#111] text-white rounded-full mb-1.5">
                 あなたの肌タイプ
               </span>
@@ -116,6 +111,14 @@ export function PhoneMockup() {
                   </span>
                 </div>
               ))}
+            </div>
+
+            {/* AI Advice */}
+            <div className="mt-3 border border-[#eee] rounded-lg px-3 py-2.5">
+              <p className="text-[9px] font-bold text-[#111] mb-1.5">AIアドバイス</p>
+              <p className="text-[8px] text-[#888] leading-relaxed">
+                Tゾーンのテカリと頬の乾燥には、部位ごとのケアが効果的。さっぱり系の化粧水と保湿乳液の組み合わせがおすすめです。
+              </p>
             </div>
           </div>
         </div>
