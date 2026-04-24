@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Sun } from "lucide-react";
 import { Category } from "@/lib/types";
 import { categoryEnNames } from "@/lib/data";
 
@@ -10,10 +9,7 @@ const categoryImages: Record<string, string> = {
   emulsion: "/images/products/emulsion.png",
   "all-in-one": "/images/products/all-in-one.png",
   "bb-cream": "/images/products/bb-cream.png",
-};
-
-const categoryIcons: Record<string, React.ReactNode> = {
-  sunscreen: <Sun size={48} strokeWidth={1.5} />,
+  sunscreen: "/images/categories/sunscreen.svg",
 };
 
 export function CategoryCard({ category }: { category: Category }) {
@@ -34,9 +30,7 @@ export function CategoryCard({ category }: { category: Category }) {
             className={`object-cover ${category.slug === "bb-cream" ? "object-right" : ""}`}
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-foreground">
-            {categoryIcons[category.slug]}
-          </div>
+          <div className="w-full h-full flex items-center justify-center text-foreground" />
         )}
       </div>
       <p className="text-sm font-medium text-foreground">{category.name}</p>
