@@ -1,6 +1,6 @@
 import { unstable_cache } from "next/cache";
 import { supabase } from "./supabase";
-import type { Brand, Category, ProductWithRelations } from "./types";
+import type { Article, Brand, Category, ProductWithRelations } from "./types";
 
 const REVALIDATE = 3600;
 
@@ -126,5 +126,44 @@ export const getRankedProducts = unstable_cache(
     return (data as ProductWithRelations[]) ?? [];
   },
   ["ranked-products"],
+  { revalidate: REVALIDATE }
+);
+
+export const getArticles = unstable_cache(
+  async (): Promise<Article[]> => {
+    const { data } = await supabase
+      .from("articles")
+      .select("*")
+      .not("published_at", "is", null)
+      .order("published_at", { ascending: false });
+    return (data as Article[]) ?? [];
+  },
+  ["articles"],
+  { revalidate: REVALIDATE }
+);
+
+export const getArticleBySlug = unstable_cache(
+  async (slug: string): Promise<Article | null> => {
+    const { data } = await supabase
+      .from("articles")
+      .select("*")
+      .eq("slug", slug)
+      .single();
+    return (data as Article) ?? null;
+  },
+  ["article-by-slug"],
+  { revalidate: REVALIDATE }
+);
+
+export const getProductsByIds = unstable_cache(
+  async (ids: number[]): Promise<ProductWithRelations[]> => {
+    if (ids.length === 0) return [];
+    const { data } = await supabase
+      .from("products")
+      .select("*, brands(*), categories(*)")
+      .in("id", ids);
+    return (data as ProductWithRelations[]) ?? [];
+  },
+  ["products-by-ids"],
   { revalidate: REVALIDATE }
 );
