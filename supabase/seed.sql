@@ -199,7 +199,7 @@ UPDATE products SET affiliate_links = '{"a8": "https://px.a8.net/svt/ejp?a8mat=4
 WHERE brand_id = (SELECT id FROM brands WHERE slug = 'orbis-mr');
 
 -- ZIGEN フェイスウォッシュ
-UPDATE products SET affiliate_links = '{"a8": "https://px.a8.net/svt/ejp?a8mat=4B1SPR+DE94S2+328C+2Z7QM9"}'::jsonb
+UPDATE products SET affiliate_links = '{"a8": "https://px.a8.net/svt/ejp?a8mat=4B1SPR+DLEC1E+5CYY+NUES1"}'::jsonb
 WHERE slug = 'zigen-face-wash';
 
 -- ZIGEN オールインワン フェイスジェル
