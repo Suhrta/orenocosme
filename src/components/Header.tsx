@@ -14,14 +14,14 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-border">
+    <header className="sticky top-0 z-50 bg-[#F7F7F7]/80 backdrop-blur-md border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           <Link href="/" className="flex flex-col leading-tight">
-            <span className="text-lg font-bold tracking-tight text-foreground font-brush">
+            <span className="text-2xl font-bold tracking-tight text-foreground font-brush">
               オレのコスメ
             </span>
-            <span className="text-[10px] text-foreground-muted tracking-wide">
+            <span className="text-xs text-foreground-muted tracking-wide">
               メンズコスメ総合サイト
             </span>
           </Link>
@@ -71,7 +71,7 @@ export function Header() {
       </div>
 
       {mobileOpen && (
-        <div className="lg:hidden border-t border-border bg-white">
+        <div className="lg:hidden border-t border-border bg-[#F7F7F7]/95 backdrop-blur-md">
           <div className="px-4 py-4 space-y-3">
             {navItems.map((item) => (
               <Link
