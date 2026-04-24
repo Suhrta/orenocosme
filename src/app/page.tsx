@@ -245,7 +245,7 @@ export default async function Home() {
       </section>
 
       {/* AI Skin Diagnosis CTA */}
-      <section className="bg-background-secondary py-12 md:py-16">
+      <section className="py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
