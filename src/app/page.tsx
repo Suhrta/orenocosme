@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { getProducts, getCategories, getProductBySlug } from "@/lib/data";
+import { getProducts, getCategories, getProductBySlug, getBrands } from "@/lib/data";
 import { ProductCard } from "@/components/ProductCard";
 import { CategoryCard } from "@/components/CategoryCard";
 import { PhoneMockup } from "@/components/PhoneMockup";
@@ -96,80 +96,32 @@ const features = [
   },
 ];
 
-const stats = [
-  {
-    icon: (
-      <svg
-        width="32"
-        height="32"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      >
-        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
-        <line x1="7" y1="7" x2="7.01" y2="7" />
-      </svg>
-    ),
-    value: "—",
-    suffix: "",
-    label: "掲載ブランド数",
-  },
-  {
-    icon: (
-      <svg
-        width="32"
-        height="32"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      >
-        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-        <path d="M8 10h8M8 14h4" />
-      </svg>
-    ),
-    value: "—",
-    suffix: "",
-    label: "AI分析済み商品",
-  },
-  {
-    icon: (
-      <svg
-        width="32"
-        height="32"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      >
-        <rect x="2" y="3" width="20" height="14" rx="2" />
-        <path d="M8 21h8M12 17v4" />
-      </svg>
-    ),
-    value: "—",
-    suffix: "",
-    label: "掲載商品数",
-  },
-  {
-    icon: (
-      <svg
-        width="32"
-        height="32"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      >
-        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
-        <polyline points="17 6 23 6 23 12" />
-      </svg>
-    ),
-    value: "毎月更新",
-    suffix: "",
-    label: "データ更新",
-  },
-];
+const statIcons = {
+  brands: (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+      <line x1="7" y1="7" x2="7.01" y2="7" />
+    </svg>
+  ),
+  aiReviewed: (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      <path d="M8 10h8M8 14h4" />
+    </svg>
+  ),
+  products: (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <rect x="2" y="3" width="20" height="14" rx="2" />
+      <path d="M8 21h8M12 17v4" />
+    </svg>
+  ),
+  update: (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+      <polyline points="17 6 23 6 23 12" />
+    </svg>
+  ),
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -181,11 +133,25 @@ const jsonLd = {
 };
 
 export default async function Home() {
-  const [products, categories, sampleProduct] = await Promise.all([
-    getProducts(4),
-    getCategories(),
-    getProductBySlug("bulk-homme-face-wash"),
-  ]);
+  const [products, categories, sampleProduct, allProducts, brands] =
+    await Promise.all([
+      getProducts(4),
+      getCategories(),
+      getProductBySlug("bulk-homme-face-wash"),
+      getProducts(),
+      getBrands(),
+    ]);
+
+  const aiReviewedCount = allProducts.filter(
+    (p) => p.ai_review_pros && p.ai_review_pros.length > 0
+  ).length;
+
+  const stats = [
+    { icon: statIcons.brands, value: String(brands.length), label: "掲載ブランド数" },
+    { icon: statIcons.aiReviewed, value: String(aiReviewedCount), label: "AI分析済み商品" },
+    { icon: statIcons.products, value: String(allProducts.length), label: "掲載商品数" },
+    { icon: statIcons.update, value: "毎月更新", label: "データ更新" },
+  ];
 
   return (
     <>
@@ -525,7 +491,6 @@ export default async function Home() {
                 </p>
                 <p className="text-2xl md:text-3xl font-bold text-foreground">
                   {stat.value}
-                  <span className="text-base font-medium">{stat.suffix}</span>
                 </p>
               </div>
             ))}
