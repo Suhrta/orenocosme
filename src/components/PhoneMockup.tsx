@@ -66,77 +66,56 @@ export function PhoneMockup() {
               }}
             />
 
-            {/* App bar */}
-            <div className="flex items-center gap-2 mb-4 mt-2">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#111"
-                strokeWidth="2"
-              >
-                <path d="m15 18-6-6 6-6" />
-              </svg>
-              <span className="text-[13px] font-bold text-[#111]">
-                AI肌診断結果
+            {/* Title */}
+            <h2 className="text-[13px] font-bold text-[#111] text-center mt-2 mb-4">
+              AI肌診断結果
+            </h2>
+
+            {/* Skin Type */}
+            <div className="text-center mb-3">
+              <span className="inline-block text-[8px] font-medium px-2 py-0.5 bg-[#111] text-white rounded-full mb-1.5">
+                あなたの肌タイプ
               </span>
+              <p className="text-[18px] font-bold leading-tight text-[#111] mb-0.5">
+                混合肌
+              </p>
+              <p className="text-[9px] text-[#888]">
+                Tゾーンはテカり、頬は乾きやすい肌質
+              </p>
             </div>
 
-            {/* Score + Rank */}
-            <div className="flex items-baseline justify-center gap-5 mb-2">
-              <div className="text-center">
-                <p className="text-[9px] text-[#999] mb-0.5">総合スコア</p>
-                <div className="flex items-baseline justify-center gap-0.5">
-                  <span className="text-[38px] font-bold leading-none text-[#111]">
-                    82
-                  </span>
-                  <span className="text-[11px] text-[#999]">/100</span>
-                </div>
-              </div>
-              <div className="text-center">
-                <p className="text-[9px] text-[#999] mb-0.5">ランク</p>
-                <span className="text-[32px] font-bold leading-none text-[#111]">
-                  A
-                </span>
-              </div>
+            {/* Overall Score */}
+            <div className="flex items-baseline justify-center gap-0.5 mb-3">
+              <span className="text-[9px] text-[#999] mr-1">総合スコア</span>
+              <span className="text-[32px] font-bold leading-none text-[#111]">
+                82
+              </span>
+              <span className="text-[9px] text-[#999]">/100</span>
             </div>
-
-            <p className="text-[10px] text-[#888] text-center leading-relaxed mb-4">
-              あなたは清潔感があり、
-              <br />
-              好印象を与えやすいタイプです。
-            </p>
 
             {/* Score bars */}
-            <div className="w-full space-y-2.5">
+            <div className="w-full space-y-2">
               {[
                 { label: "水分量", score: 85 },
                 { label: "皮脂バランス", score: 78 },
                 { label: "キメ", score: 80 },
                 { label: "ハリ・弾力", score: 75 },
               ].map((item) => (
-                <div key={item.label} className="flex items-center gap-2">
-                  <span className="text-[10px] text-[#888] w-16 shrink-0 text-right">
+                <div key={item.label} className="flex items-center gap-1.5">
+                  <span className="text-[9px] text-[#888] w-14 shrink-0 text-right">
                     {item.label}
                   </span>
-                  <div className="flex-1 h-[6px] bg-[#eee] rounded-full overflow-hidden">
+                  <div className="flex-1 h-[5px] bg-[#f0f0f0] rounded-full overflow-hidden">
                     <div
                       className="h-full bg-[#111] rounded-full"
                       style={{ width: `${item.score}%` }}
                     />
                   </div>
-                  <span className="text-[10px] font-bold text-[#111] w-5 text-right">
+                  <span className="text-[9px] font-bold text-[#111] w-5 text-right">
                     {item.score}
                   </span>
                 </div>
               ))}
-            </div>
-
-            <div className="flex-1" />
-
-            <div className="flex justify-center">
-              <div className="w-28 h-1 bg-[#ddd] rounded-full" />
             </div>
           </div>
         </div>
