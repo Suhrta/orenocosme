@@ -247,8 +247,8 @@ export default async function Home() {
       {/* AI Skin Diagnosis CTA */}
       <section className="py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
+          <div className="grid md:grid-cols-2 gap-4 items-center">
+            <div className="md:justify-self-end">
               <p className="text-sm text-foreground-muted mb-2">
                 AIがあなたの肌を分析
               </p>

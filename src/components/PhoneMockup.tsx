@@ -5,9 +5,7 @@ export function PhoneMockup() {
         className="relative mx-auto w-[272px] h-[560px] rounded-[52px] p-[3px]"
         style={{
           background:
-            "linear-gradient(145deg, #8A919B 0%, #3B4049 20%, #1E2127 50%, #3B4049 80%, #8A919B 100%)",
-          boxShadow:
-            "0 30px 80px rgba(0,0,0,0.4), 0 12px 28px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.15), inset 0 -1px 1px rgba(0,0,0,0.4)",
+            "linear-gradient(145deg, #2A2A2E 0%, #1A1A1E 40%, #0D0D0F 60%, #1A1A1E 100%)",
         }}
       >
         {/* Inner bezel */}
