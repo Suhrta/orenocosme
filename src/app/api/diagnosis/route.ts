@@ -5,6 +5,21 @@ import { supabase } from "@/lib/supabase";
 const anthropic = new Anthropic();
 
 export async function POST(request: Request) {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const keyDebug = {
+    exists: !!apiKey,
+    length: apiKey?.length ?? 0,
+    prefix: apiKey?.substring(0, 10) ?? "",
+  };
+  console.log("API Key debug:", keyDebug);
+
+  if (!apiKey) {
+    return NextResponse.json(
+      { error: "ANTHROPIC_API_KEY is not set", debug: keyDebug },
+      { status: 500 }
+    );
+  }
+
   try {
     const body = await request.json();
     const {
@@ -153,7 +168,7 @@ ${JSON.stringify(productList)}
       err instanceof Error ? err.message : "不明なエラーが発生しました";
     const errName = err instanceof Error ? err.name : "UnknownError";
     return NextResponse.json(
-      { error: errMessage, errorType: errName },
+      { error: errMessage, errorType: errName, debug: keyDebug },
       { status: 500 }
     );
   }
