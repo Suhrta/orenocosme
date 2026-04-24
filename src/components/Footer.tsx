@@ -7,7 +7,7 @@ const footerLinks = [
       { label: "ランキング", href: "#" },
       { label: "商品検索", href: "/products" },
       { label: "レビュー", href: "#" },
-      { label: "AI肌診断", href: "#" },
+      { label: "AI肌診断", href: "/diagnosis" },
     ],
   },
   {

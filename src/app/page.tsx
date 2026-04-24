@@ -268,7 +268,7 @@ export default async function Home() {
                 おすすめのケアやアイテムもご提案します。
               </p>
               <Link
-                href="#"
+                href="/diagnosis"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-foreground text-white font-medium rounded hover:bg-foreground/90 transition-colors"
               >
                 診断をはじめる
