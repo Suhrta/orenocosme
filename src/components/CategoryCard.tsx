@@ -28,6 +28,7 @@ export function CategoryCard({ category }: { category: Category }) {
             fill
             sizes="(max-width: 640px) 33vw, 16vw"
             className={`object-cover ${category.slug === "bb-cream" ? "object-right" : ""}`}
+            {...(imageUrl.endsWith(".svg") && { unoptimized: true })}
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-foreground" />
