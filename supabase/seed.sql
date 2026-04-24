@@ -190,6 +190,26 @@ WHERE slug = 'shiseido-men-emulsion';
 -- Amazon Ratings
 -- =============================================
 
+-- =============================================
+-- A8 Affiliate Links
+-- =============================================
+
+-- ORBIS Mr. 全商品
+UPDATE products SET affiliate_links = '{"a8": "https://px.a8.net/svt/ejp?a8mat=4B1SPR+DML78Y+1USQ+2Z68LU"}'::jsonb
+WHERE brand_id = (SELECT id FROM brands WHERE slug = 'orbis-mr');
+
+-- ZIGEN フェイスウォッシュ
+UPDATE products SET affiliate_links = '{"a8": "https://px.a8.net/svt/ejp?a8mat=4B1SPR+DE94S2+328C+2Z7QM9"}'::jsonb
+WHERE slug = 'zigen-face-wash';
+
+-- ZIGEN オールインワン フェイスジェル
+UPDATE products SET affiliate_links = '{"a8": "https://px.a8.net/svt/ejp?a8mat=4B1SPR+DEUKDU+5CYY+5YZ75"}'::jsonb
+WHERE slug = 'zigen-all-in-one-gel';
+
+-- =============================================
+-- Amazon Ratings
+-- =============================================
+
 UPDATE products SET amazon_rating = 4.2, amazon_review_count = 105 WHERE slug = 'bulk-homme-face-wash';
 UPDATE products SET amazon_rating = 4.4, amazon_review_count = 678 WHERE slug = 'orbis-mr-lotion';
 UPDATE products SET amazon_rating = 4.4, amazon_review_count = 204 WHERE slug = 'muji-all-in-one-gel';

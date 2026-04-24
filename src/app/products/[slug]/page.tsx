@@ -227,6 +227,16 @@ export default async function ProductDetailPage(
             )}
 
             <div className="flex flex-col sm:flex-row gap-3">
+              {product.affiliate_links?.a8 && (
+                <a
+                  href={product.affiliate_links.a8}
+                  target="_blank"
+                  rel="nofollow noopener"
+                  className="flex-1 inline-flex items-center justify-center px-6 py-3 bg-foreground text-white font-medium rounded hover:bg-foreground/90 transition-colors text-sm"
+                >
+                  公式サイトで購入
+                </a>
+              )}
               <a
                 href={product.affiliate_links?.amazon ?? "#"}
                 className="flex-1 inline-flex items-center justify-center px-6 py-3 bg-foreground text-white font-medium rounded hover:bg-foreground/90 transition-colors text-sm"
