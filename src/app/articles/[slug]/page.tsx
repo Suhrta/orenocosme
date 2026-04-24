@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { notFound } from "next/navigation";
 import {
   getArticles,
@@ -116,6 +117,7 @@ export default async function ArticleDetailPage(
 
         <div className="prose-custom">
           <Markdown
+            remarkPlugins={[remarkGfm]}
             components={{
               h2: ({ children }) => (
                 <h2 className="text-xl font-bold text-foreground mt-10 mb-4">
@@ -145,6 +147,27 @@ export default async function ArticleDetailPage(
               ),
               strong: ({ children }) => (
                 <strong className="font-bold text-foreground">{children}</strong>
+              ),
+              table: ({ children }) => (
+                <div className="overflow-x-auto mb-4">
+                  <table className="w-full text-sm border border-border">{children}</table>
+                </div>
+              ),
+              thead: ({ children }) => (
+                <thead className="bg-background-secondary">{children}</thead>
+              ),
+              th: ({ children }) => (
+                <th className="border border-border px-3 py-2 text-left font-bold text-foreground">
+                  {children}
+                </th>
+              ),
+              td: ({ children }) => (
+                <td className="border border-border px-3 py-2 text-foreground-muted">
+                  {children}
+                </td>
+              ),
+              tr: ({ children }) => (
+                <tr className="even:bg-background-secondary">{children}</tr>
               ),
               hr: () => <hr className="border-border my-8" />,
             }}
