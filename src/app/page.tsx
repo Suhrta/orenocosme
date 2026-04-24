@@ -51,7 +51,7 @@ const features = [
       </svg>
     ),
     title: "AIレビュー分析",
-    desc: "口コミをAIが分析してメリット・デメリットを整理",
+    desc: "AIが口コミのメリデメを分析",
     href: "/products",
   },
   {
