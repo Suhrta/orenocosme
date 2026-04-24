@@ -19,8 +19,8 @@ const footerLinks = [
   {
     title: "サポート",
     links: [
-      { label: "お問い合わせ", href: "#" },
-      { label: "利用規約", href: "#" },
+      { label: "お問い合わせ", href: "/contact" },
+      { label: "利用規約", href: "/terms" },
       { label: "プライバシーポリシー", href: "/privacy" },
       { label: "運営者情報", href: "/about" },
     ],
