@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -18,15 +17,13 @@ export function Header() {
     <header className="sticky top-0 z-50 bg-[#F7F7F7]/80 backdrop-blur-md border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          <Link href="/">
-            <Image
-              src="/images/logo.png"
-              alt="オレのコスメ メンズコスメ総合サイト"
-              width={72}
-              height={48}
-              unoptimized
-              className="h-[48px] w-auto object-contain"
-            />
+          <Link href="/" className="flex flex-col leading-tight">
+            <span className="text-2xl font-bold tracking-tight text-foreground font-brush">
+              オレのコスメ
+            </span>
+            <span className="text-xs text-foreground-muted tracking-wide">
+              メンズコスメ総合サイト
+            </span>
           </Link>
 
           <nav className="hidden lg:flex items-center gap-6">
