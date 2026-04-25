@@ -24,6 +24,7 @@ export function Header() {
               alt="オレのコスメ メンズコスメ総合サイト"
               width={72}
               height={48}
+              unoptimized
               className="h-[48px] w-auto object-contain"
             />
           </Link>
