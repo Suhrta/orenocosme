@@ -22,10 +22,9 @@ export function Header() {
             <Image
               src="/images/logo.png"
               alt="オレのコスメ メンズコスメ総合サイト"
-              width={0}
-              height={45}
-              sizes="auto"
-              className="h-[45px] w-auto"
+              width={72}
+              height={48}
+              className="h-[48px] w-auto object-contain"
             />
           </Link>
 
