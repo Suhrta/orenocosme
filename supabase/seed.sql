@@ -131,7 +131,7 @@ insert into products (brand_id, category_id, name, slug, price, volume) values
 -- ニベアメン (brand_id=16)
 insert into products (brand_id, category_id, name, slug, price, volume) values
   (16, 1, 'フェイスウォッシュ フレッシュ',   'nivea-men-face-wash',      440, '100g'),
-  (16, 2, 'スキンコンディショナーバーム エイジング', 'nivea-men-conditioner', 880, '110ml'),
+  (16, 3, 'スキンコンディショナーバーム エクストラケア', 'nivea-men-conditioner-extra-care', 880, '110ml'),
   (16, 6, 'UVプロテクター',                  'nivea-men-uv-protector',   880, '40ml');
 
 -- ルシード (brand_id=17)
