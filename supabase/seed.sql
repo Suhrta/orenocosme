@@ -245,6 +245,7 @@ UPDATE products SET image_url = '/images/products/toner/orbis-mr-lotion.jpg' WHE
 UPDATE products SET image_url = '/images/products/toner/oxy-moist-lotion.jpg' WHERE slug = 'oxy-moist-lotion';
 UPDATE products SET image_url = '/images/products/toner/shiseido-men-lotion.jpg' WHERE slug = 'shiseido-men-lotion';
 UPDATE products SET image_url = '/images/products/toner/three-men-balancing-stem-lotion.jpg' WHERE slug = 'three-men-lotion';
+UPDATE products SET image_url = '/images/products/toner/botchan-forest-toner.jpg' WHERE slug = 'botchan-forest-toner';
 -- emulsion
 UPDATE products SET image_url = '/images/products/emulsion/bulk-homme-the-face-lotion.jpg' WHERE slug = 'bulk-homme-lotion';
 UPDATE products SET image_url = '/images/products/emulsion/orbis-mr-moisture.jpg' WHERE slug = 'orbis-mr-moisture';
