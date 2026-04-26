@@ -2,7 +2,7 @@ import { unstable_cache } from "next/cache";
 import { supabase } from "./supabase";
 import type { Article, Brand, Category, ProductWithRelations } from "./types";
 
-const REVALIDATE = 3600;
+const REVALIDATE = 60;
 
 export const categoryEnNames: Record<string, string> = {
   "face-wash": "FACE WASH",
