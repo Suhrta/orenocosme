@@ -10,7 +10,7 @@ const categoryImages: Record<string, string> = {
   "all-in-one": "/images/products/all-in-one/all-in-one.png",
   "bb-cream": "/images/products/bb-cream/bb-cream.png",
   sunscreen: "/images/products/sunscreen/sunscreen.png",
-  serum: "/images/products/serum/serum.png",
+  serum: "/images/categories/serum.png",
 };
 
 export function CategoryCard({ category }: { category: Category }) {
