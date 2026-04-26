@@ -109,7 +109,7 @@ insert into products (brand_id, category_id, name, slug, price, volume) values
 
 -- THREE for MEN (brand_id=12)
 insert into products (brand_id, category_id, name, slug, price, volume) values
-  (12, 1, 'ジェントリング フォーム',         'three-men-foam',          3300, '100g'),
+  (12, 1, 'バランシングステム ジェリーウォッシュ', 'three-men-balancing-stem-jelly-wash', 3300, '100g'),
   (12, 2, 'ジェントリング ローション',       'three-men-lotion',        4400, '100ml'),
   (12, 3, 'ジェントリング エマルジョン',     'three-men-emulsion',      4950, '60ml');
 
@@ -151,10 +151,6 @@ insert into products (brand_id, category_id, name, slug, price, volume) values
   (19, 1, 'パーフェクトウォッシュ',           'oxy-perfect-wash',         440, '130g'),
   (19, 2, 'モイストローション',               'oxy-moist-lotion',         660, '170ml'),
   (19, 4, 'オールインワンジェル',             'oxy-all-in-one-gel',       880, '90g');
-
--- サクセス (brand_id=20)
-insert into products (brand_id, category_id, name, slug, price, volume) values
-  (20, 1, '洗顔フォーム',                    'success-face-wash',         550, '120g');
 
 -- =============================================
 -- AI Review Pros / Cons
@@ -220,8 +216,25 @@ UPDATE products SET amazon_rating = 4.5, amazon_review_count = 75 WHERE slug = '
 -- =============================================
 
 -- face-wash
+UPDATE products SET image_url = '/images/products/face-wash/andgino-premium-wash.jpg' WHERE slug = 'andgino-premium-wash';
+UPDATE products SET image_url = '/images/products/face-wash/botchan-cleanser.jpg' WHERE slug = 'botchan-cleanser';
 UPDATE products SET image_url = '/images/products/face-wash/bulk-homme-the-face-wash.jpg' WHERE slug = 'bulk-homme-face-wash';
+UPDATE products SET image_url = '/images/products/face-wash/dhc-men-face-wash.jpg' WHERE slug = 'dhc-men-face-wash';
+UPDATE products SET image_url = '/images/products/face-wash/gatsby-facial-wash-deep.jpg' WHERE slug = 'gatsby-facial-wash-deep';
+UPDATE products SET image_url = '/images/products/face-wash/gatsby-facial-wash-scrub.jpg' WHERE slug = 'gatsby-facial-wash-scrub';
+UPDATE products SET image_url = '/images/products/face-wash/lucido-face-wash-q10.jpg' WHERE slug = 'lucido-face-wash-q10';
+UPDATE products SET image_url = '/images/products/face-wash/magnifique-wash.jpg' WHERE slug = 'magnifique-wash';
+UPDATE products SET image_url = '/images/products/face-wash/mens-biore-foam-wash.jpg' WHERE slug = 'mens-biore-foam-wash';
+UPDATE products SET image_url = '/images/products/face-wash/muji-mild-face-wash.jpg' WHERE slug = 'muji-mild-face-wash';
+UPDATE products SET image_url = '/images/products/face-wash/nivea-men-face-wash.jpg' WHERE slug = 'nivea-men-face-wash';
+UPDATE products SET image_url = '/images/products/face-wash/null-face-wash.jpg' WHERE slug = 'null-face-wash';
 UPDATE products SET image_url = '/images/products/face-wash/orbis-mr-wash.jpg' WHERE slug = 'orbis-mr-wash';
+UPDATE products SET image_url = '/images/products/face-wash/oxy-perfect-wash.jpg' WHERE slug = 'oxy-perfect-wash';
+UPDATE products SET image_url = '/images/products/face-wash/quattro-face-wash.jpg' WHERE slug = 'quattro-face-wash';
+UPDATE products SET image_url = '/images/products/face-wash/shiseido-men-cleanser.jpg' WHERE slug = 'shiseido-men-cleanser';
+UPDATE products SET image_url = '/images/products/face-wash/three-men-foam.jpg' WHERE slug = 'three-men-balancing-stem-jelly-wash';
+UPDATE products SET image_url = '/images/products/face-wash/uno-whip-wash-black.jpg' WHERE slug = 'uno-whip-wash-black';
+UPDATE products SET image_url = '/images/products/face-wash/zigen-face-wash.jpg' WHERE slug = 'zigen-face-wash';
 -- toner
 UPDATE products SET image_url = '/images/products/toner/astalift-lotion.jpg' WHERE slug = 'astalift-men-lotion';
 UPDATE products SET image_url = '/images/products/toner/bulk-homme-toner.jpg' WHERE slug = 'bulk-homme-toner';
