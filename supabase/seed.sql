@@ -337,13 +337,16 @@ WHERE slug = 'labseries-serum';
 insert into brands (name, slug, description, official_url) values
   ('Aesop', 'aesop', 'オーストラリア・メルボルン発のスキンケアブランド。植物由来成分と科学を融合した高品質なプロダクトで男女問わず支持される。', 'https://www.aesop.com/jp');
 
-insert into products (brand_id, category_id, name, slug, price, volume) values
+insert into products (brand_id, category_id, name, slug, price, volume, image_url) values
   ((SELECT id FROM brands WHERE slug = 'aesop'), (SELECT id FROM categories WHERE slug = 'face-wash'),
-   'フェイシャル クレンザー 45', 'aesop-facial-cleanser-45', 5940, '200ml'),
+   'トゥーマインズ フェイシャル クレンザー', 'aesop-cleanser', 4180, '100ml',
+   '/images/products/face-wash/aesop-cleanser.jpg'),
   ((SELECT id FROM brands WHERE slug = 'aesop'), (SELECT id FROM categories WHERE slug = 'toner'),
-   'アンチ オキシダント トナー', 'aesop-antioxidant-toner', 7150, '200ml'),
-  ((SELECT id FROM brands WHERE slug = 'aesop'), (SELECT id FROM categories WHERE slug = 'emulsion'),
-   'カミリア フェイシャル クリーム', 'aesop-camellia-facial-cream', 7700, '60ml');
+   'トゥーマインズ フェイシャル トナー', 'aesop-toner', 4400, '100ml',
+   '/images/products/toner/aesop-toner.jpg'),
+  ((SELECT id FROM brands WHERE slug = 'aesop'), (SELECT id FROM categories WHERE slug = 'sunscreen'),
+   'プロテクティブ フェイシャル ローション SPF50', 'aesop-sunscreen', 8800, '50ml',
+   '/images/products/sunscreen/aesop-sunscreen.jpg');
 
 -- =============================================
 -- LIPPS BOY (brand_id=24)
