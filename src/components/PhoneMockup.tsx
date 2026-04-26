@@ -1,3 +1,7 @@
+"use client";
+
+import { RadarScoreChart } from "@/components/RadarScoreChart";
+
 export function PhoneMockup() {
   return (
     <div aria-hidden="true" className="max-h-[392px] overflow-hidden">
@@ -88,30 +92,12 @@ export function PhoneMockup() {
               <span className="text-[9px] text-[#999]">/100</span>
             </div>
 
-            {/* Score bars */}
-            <div className="w-full space-y-2">
-              {[
-                { label: "水分量", score: 85 },
-                { label: "皮脂バランス", score: 78 },
-                { label: "キメ", score: 80 },
-                { label: "ハリ・弾力", score: 75 },
-              ].map((item) => (
-                <div key={item.label} className="flex items-center gap-1.5">
-                  <span className="text-[9px] text-[#888] w-14 shrink-0 text-right">
-                    {item.label}
-                  </span>
-                  <div className="flex-1 h-[5px] bg-[#f0f0f0] rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-[#111] rounded-full"
-                      style={{ width: `${item.score}%` }}
-                    />
-                  </div>
-                  <span className="text-[9px] font-bold text-[#111] w-5 text-right">
-                    {item.score}
-                  </span>
-                </div>
-              ))}
-            </div>
+            {/* Radar Chart */}
+            <RadarScoreChart
+              scores={{ moisture: 85, oil_balance: 78, texture: 80, firmness: 75 }}
+              size={150}
+              fontSize={8}
+            />
 
             {/* AI Advice */}
             <div className="mt-3 border border-[#eee] rounded-lg px-3 py-2.5">

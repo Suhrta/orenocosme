@@ -4,8 +4,9 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { ProductWithRelations } from "@/lib/types";
+import { RadarScoreChart } from "@/components/RadarScoreChart";
 
-type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+type Step = 1 | 2 | 3 | 4 | 5 | 6;
 
 type DiagnosisResult = {
   skin_type: string;
@@ -24,7 +25,7 @@ type DiagnosisResult = {
   }[];
 };
 
-const TOTAL_STEPS = 7;
+const TOTAL_STEPS = 6;
 
 const skinTypeOptions = [
   "全体的にテカる",
@@ -45,10 +46,10 @@ const concernOptions = [
 const ageOptions = ["10代", "20代前半", "20代後半", "30代", "40代以上"];
 
 const currentCareOptions = [
-  "何もしていない",
-  "洗顔のみ",
+  "水で洗うだけ",
+  "洗顔料を使っている",
   "洗顔＋化粧水",
-  "洗顔＋化粧水＋乳液以上",
+  "洗顔＋化粧水＋乳液・クリーム",
 ];
 
 const budgetOptions = [
@@ -58,13 +59,6 @@ const budgetOptions = [
   "5,000円以上",
 ];
 
-const priorityOptions = [
-  "コスパ",
-  "ブランドの信頼感",
-  "成分・低刺激",
-  "手軽さ・時短",
-];
-
 export default function DiagnosisPage() {
   const [step, setStep] = useState<Step>(1);
   const [skinType, setSkinType] = useState("");
@@ -72,7 +66,6 @@ export default function DiagnosisPage() {
   const [age, setAge] = useState("");
   const [currentCare, setCurrentCare] = useState("");
   const [budget, setBudget] = useState("");
-  const [priority, setPriority] = useState("");
   const [freeText, setFreeText] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<DiagnosisResult | null>(null);
@@ -111,7 +104,6 @@ export default function DiagnosisPage() {
           age,
           currentCare,
           budget,
-          priority,
           freeText,
         }),
       });
@@ -132,7 +124,6 @@ export default function DiagnosisPage() {
     setAge("");
     setCurrentCare("");
     setBudget("");
-    setPriority("");
     setFreeText("");
     setResult(null);
     setError("");
@@ -145,10 +136,6 @@ export default function DiagnosisPage() {
       `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`,
       "_blank"
     );
-  }
-
-  function handleCopyUrl() {
-    navigator.clipboard.writeText("https://oreno-cosme.com/diagnosis");
   }
 
   if (loading) {
@@ -192,28 +179,19 @@ export default function DiagnosisPage() {
           <span className="text-sm text-foreground-muted">/100</span>
         </div>
 
-        {/* Score Bars */}
+        {/* Radar Chart */}
         <div className="bg-white border border-border rounded-lg p-6 mb-8">
-          <div className="space-y-4">
+          <RadarScoreChart scores={result.scores} size={260} fontSize={13} />
+          <div className="flex justify-center gap-6 mt-2">
             {[
               { label: "水分量", score: result.scores.moisture },
               { label: "皮脂バランス", score: result.scores.oil_balance },
               { label: "キメ", score: result.scores.texture },
               { label: "ハリ・弾力", score: result.scores.firmness },
             ].map((item) => (
-              <div key={item.label} className="flex items-center gap-3">
-                <span className="text-sm text-foreground-muted w-24 shrink-0 text-right">
-                  {item.label}
-                </span>
-                <div className="flex-1 h-2 bg-background-secondary rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-foreground rounded-full transition-all duration-700"
-                    style={{ width: `${item.score}%` }}
-                  />
-                </div>
-                <span className="text-sm font-bold text-foreground w-8 text-right">
-                  {item.score}
-                </span>
+              <div key={item.label} className="text-center">
+                <p className="text-xs text-foreground-muted">{item.label}</p>
+                <p className="text-sm font-bold text-foreground">{item.score}</p>
               </div>
             ))}
           </div>
@@ -309,12 +287,6 @@ export default function DiagnosisPage() {
             Xでシェア
           </button>
         </div>
-        <button
-          onClick={handleCopyUrl}
-          className="w-full px-6 py-3 bg-background-secondary text-foreground-muted font-medium rounded hover:bg-border transition-colors text-sm"
-        >
-          結果URLをコピー
-        </button>
       </div>
     );
   }
@@ -479,33 +451,6 @@ export default function DiagnosisPage() {
 
       {/* Step 6 */}
       {step === 6 && (
-        <div>
-          <h1 className="text-xl font-bold text-foreground mb-2">
-            重視すること
-          </h1>
-          <p className="text-sm text-foreground-muted mb-6">
-            商品選びで一番重視するのは？
-          </p>
-          <div className="space-y-3">
-            {priorityOptions.map((option) => (
-              <button
-                key={option}
-                onClick={() => selectSingle(option, setPriority)}
-                className={`w-full text-left px-5 py-4 rounded-lg border text-sm transition-colors ${
-                  priority === option
-                    ? "border-foreground bg-foreground text-white font-medium"
-                    : "border-border bg-white text-foreground hover:border-foreground"
-                }`}
-              >
-                {option}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Step 7 */}
-      {step === 7 && (
         <div>
           <h1 className="text-xl font-bold text-foreground mb-2">
             自由記述（任意）

@@ -20,7 +20,6 @@ export async function POST(request: Request) {
       age,
       currentCare,
       budget,
-      priority,
       freeText,
     } = body as {
       skinType: string;
@@ -28,7 +27,6 @@ export async function POST(request: Request) {
       age: string;
       currentCare: string;
       budget: string;
-      priority: string;
       freeText: string;
     };
 
@@ -67,7 +65,6 @@ export async function POST(request: Request) {
 - 年代: ${age}
 - 現在のスキンケア: ${currentCare}
 - 月予算: ${budget}
-- 重視すること: ${priority}
 - 自由記述: ${freeText || "なし"}
 
 【商品データベース】
