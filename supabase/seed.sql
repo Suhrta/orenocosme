@@ -382,31 +382,22 @@ insert into products (brand_id, category_id, name, slug, price, volume) values
    'ネイキッドタッチ モイスチャライザー', 'fiveism-three-naked-touch', 5720, '30ml');
 
 -- =============================================
--- Kiehl's (brand_id=26)
--- =============================================
-
-insert into brands (name, slug, description, official_url) values
-  ('Kiehl''s', 'kiehls', 'ニューヨーク発の老舗スキンケアブランド。170年以上の歴史を持ち、科学とハーブの知識を融合したメンズライン「フェイシャル フュール」が人気。', 'https://www.kiehls.jp');
-
-insert into products (brand_id, category_id, name, slug, price, volume) values
-  ((SELECT id FROM brands WHERE slug = 'kiehls'), (SELECT id FROM categories WHERE slug = 'face-wash'),
-   'フェイシャル フュール ジェル クレンザー', 'kiehls-facial-fuel-cleanser', 3740, '200ml'),
-  ((SELECT id FROM brands WHERE slug = 'kiehls'), (SELECT id FROM categories WHERE slug = 'toner'),
-   'フェイシャル フュール トナー フォー メン', 'kiehls-facial-fuel-toner', 3190, '250ml'),
-  ((SELECT id FROM brands WHERE slug = 'kiehls'), (SELECT id FROM categories WHERE slug = 'emulsion'),
-   'フェイシャル フュール モイスチャライザー フォー メン', 'kiehls-facial-fuel-moisturizer', 5060, '125ml');
-
--- =============================================
 -- CLINIQUE for MEN (brand_id=27)
 -- =============================================
 
 insert into brands (name, slug, description, official_url) values
   ('CLINIQUE for MEN', 'clinique-for-men', '皮膚科学に基づくスキンケアブランド。「洗う・除く・潤す」の3ステップで男性特有の肌悩みに対応。', 'https://www.clinique.jp');
 
-insert into products (brand_id, category_id, name, slug, price, volume) values
+insert into products (brand_id, category_id, name, slug, price, volume, image_url) values
   ((SELECT id FROM brands WHERE slug = 'clinique-for-men'), (SELECT id FROM categories WHERE slug = 'face-wash'),
-   'フェース ウォッシュ', 'clinique-men-face-wash', 3850, '200ml'),
+   'フェース ウォッシュ', 'clinique-men-face-wash', 6050, '200ml',
+   '/images/products/face-wash/clinique-face-wash.jpg'),
   ((SELECT id FROM brands WHERE slug = 'clinique-for-men'), (SELECT id FROM categories WHERE slug = 'toner'),
-   'エクスフォリエーティング トニック', 'clinique-men-exfoliating-tonic', 3850, '200ml'),
+   'エクスフォリエーティング トニック', 'clinique-men-exfoliating-tonic', 6050, '200ml',
+   '/images/products/toner/clinique-toner.jpg'),
   ((SELECT id FROM brands WHERE slug = 'clinique-for-men'), (SELECT id FROM categories WHERE slug = 'emulsion'),
-   'モイスチャライジング ローション', 'clinique-men-moisturizing-lotion', 5500, '100ml');
+   'モイスチャライジング ローション', 'clinique-men-moisturizing-lotion', 8250, '100ml', NULL);
+
+UPDATE products SET amazon_rating = 4.6, amazon_review_count = 799 WHERE slug = 'clinique-men-face-wash';
+UPDATE products SET amazon_rating = 4.6, amazon_review_count = 90 WHERE slug = 'clinique-men-exfoliating-tonic';
+UPDATE products SET amazon_rating = 4.7, amazon_review_count = 1863 WHERE slug = 'clinique-men-moisturizing-lotion';
