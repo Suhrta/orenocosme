@@ -5,6 +5,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { CategoryCard } from "@/components/CategoryCard";
 import { PhoneMockup } from "@/components/PhoneMockup";
 import { AIReviewCarousel } from "@/components/AIReviewCarousel";
+import { Star } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -18,20 +19,7 @@ export const metadata: Metadata = {
 
 const features = [
   {
-    icon: (
-      <svg
-        width="32"
-        height="32"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M8 21h8M12 17v4M3.2 14.2l2.5-2.5M20.8 14.2l-2.5-2.5M18 8A6 6 0 0 0 6 8c0 4 3 6 3 8h6c0-2 3-4 3-8z" />
-      </svg>
-    ),
+    icon: <Star size={32} strokeWidth={1.5} />,
     title: "ランキング",
     desc: "人気アイテムを部門別にリアルタイムで更新",
     href: "/ranking",
