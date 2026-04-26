@@ -7,7 +7,8 @@ insert into categories (name, slug, sort_order) values
   ('乳液',         'emulsion',      3),
   ('オールインワン', 'all-in-one',    4),
   ('BBクリーム',    'bb-cream',      5),
-  ('日焼け止め',    'sunscreen',     6);
+  ('日焼け止め',    'sunscreen',     6),
+  ('美容液',       'serum',         7);
 
 -- =============================================
 -- Brands (20)
@@ -115,7 +116,7 @@ insert into products (brand_id, category_id, name, slug, price, volume) values
 -- &GINO (brand_id=13)
 insert into products (brand_id, category_id, name, slug, price, volume) values
   (13, 1, 'プレミアムフェイスウォッシュ グランデ', 'andgino-premium-wash',   3960, '100g'),
-  (13, 3, 'アクアモイス',                          'andgino-aqua-mois',      5280, '50ml');
+  (13, 7, 'アクアモイス',                          'andgino-aqua-mois',      5280, '50ml');
 
 -- クワトロボタニコ (brand_id=14)
 insert into products (brand_id, category_id, name, slug, price, volume) values
@@ -270,6 +271,8 @@ UPDATE products SET image_url = '/images/products/all-in-one/gatsby-perfect-uv-s
 UPDATE products SET image_url = '/images/products/sunscreen/lucido-uv-block.jpg' WHERE slug = 'lucido-uv-block';
 UPDATE products SET image_url = '/images/products/sunscreen/null-sunscreen-gel.jpg' WHERE slug = 'null-sunscreen-gel';
 UPDATE products SET image_url = '/images/products/sunscreen/quattro-botanical-sunscreen.jpg' WHERE slug = 'quattro-botanical-sunscreen';
+-- serum
+UPDATE products SET image_url = '/images/products/serum/andgino-aqua-mois.jpg' WHERE slug = 'andgino-aqua-mois';
 
 -- =============================================
 -- RETOUCH (brand_id=21)

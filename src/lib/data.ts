@@ -8,6 +8,7 @@ export const categoryEnNames: Record<string, string> = {
   "all-in-one": "ALL IN ONE",
   "bb-cream": "BB CREAM",
   sunscreen: "SUN SCREEN",
+  serum: "SERUM",
 };
 
 export async function getCategories(): Promise<Category[]> {
