@@ -291,3 +291,89 @@ UPDATE products SET
 WHERE slug = 'retouch-bb-cream';
 
 UPDATE products SET amazon_rating = 4.0, amazon_review_count = 241 WHERE slug = 'retouch-bb-cream';
+
+-- =============================================
+-- Lab Series (brand_id=22)
+-- =============================================
+
+insert into brands (name, slug, description, official_url) values
+  ('Lab Series', 'lab-series', 'アラミスグループのメンズスキンケア専門ブランド。科学的アプローチで男性の肌悩みに応えるハイエンドなスキンケアを展開。', 'https://www.labseries.jp');
+
+insert into products (brand_id, category_id, name, slug, price, volume) values
+  ((SELECT id FROM brands WHERE slug = 'lab-series'), (SELECT id FROM categories WHERE slug = 'face-wash'),
+   'マルチアクション フェース ウォッシュ', 'lab-series-face-wash', 3740, '100ml'),
+  ((SELECT id FROM brands WHERE slug = 'lab-series'), (SELECT id FROM categories WHERE slug = 'toner'),
+   'ウオーター ローション RE', 'lab-series-water-lotion', 4400, '200ml'),
+  ((SELECT id FROM brands WHERE slug = 'lab-series'), (SELECT id FROM categories WHERE slug = 'sunscreen'),
+   'オールインワン ディフェンス ローション SPF35', 'lab-series-defense-lotion', 7480, '50ml');
+
+-- =============================================
+-- Aesop (brand_id=23)
+-- =============================================
+
+insert into brands (name, slug, description, official_url) values
+  ('Aesop', 'aesop', 'オーストラリア・メルボルン発のスキンケアブランド。植物由来成分と科学を融合した高品質なプロダクトで男女問わず支持される。', 'https://www.aesop.com/jp');
+
+insert into products (brand_id, category_id, name, slug, price, volume) values
+  ((SELECT id FROM brands WHERE slug = 'aesop'), (SELECT id FROM categories WHERE slug = 'face-wash'),
+   'フェイシャル クレンザー 45', 'aesop-facial-cleanser-45', 5940, '200ml'),
+  ((SELECT id FROM brands WHERE slug = 'aesop'), (SELECT id FROM categories WHERE slug = 'toner'),
+   'アンチ オキシダント トナー', 'aesop-antioxidant-toner', 7150, '200ml'),
+  ((SELECT id FROM brands WHERE slug = 'aesop'), (SELECT id FROM categories WHERE slug = 'emulsion'),
+   'カミリア フェイシャル クリーム', 'aesop-camellia-facial-cream', 7700, '60ml');
+
+-- =============================================
+-- LIPPS BOY (brand_id=24)
+-- =============================================
+
+insert into brands (name, slug, description, official_url) values
+  ('LIPPS BOY', 'lipps-boy', '人気メンズ美容室LIPPSが手がけるメンズコスメブランド。洗顔・化粧水・BBクリームなどスキンケアからメイクまで幅広く展開。', 'https://products.lipps.co.jp/lipps-boy/');
+
+insert into products (brand_id, category_id, name, slug, price, volume) values
+  ((SELECT id FROM brands WHERE slug = 'lipps-boy'), (SELECT id FROM categories WHERE slug = 'face-wash'),
+   'フェイスウォッシュ', 'lipps-boy-face-wash', 1980, '150ml'),
+  ((SELECT id FROM brands WHERE slug = 'lipps-boy'), (SELECT id FROM categories WHERE slug = 'toner'),
+   'フェイストナー', 'lipps-boy-face-toner', 1980, '250ml'),
+  ((SELECT id FROM brands WHERE slug = 'lipps-boy'), (SELECT id FROM categories WHERE slug = 'bb-cream'),
+   'フェイスジェル BBクリーム', 'lipps-boy-face-gel', 2420, '25g');
+
+-- =============================================
+-- FIVEISM × THREE (brand_id=25)
+-- =============================================
+
+insert into brands (name, slug, description, official_url) values
+  ('FIVEISM × THREE', 'fiveism-three', 'THREEが展開するジェンダーニュートラルなメイクアップブランド。「個性」をコンセプトにBBクリームや化粧下地を提案。', 'https://www.threecosmetics.com/fiveism-x-three/');
+
+insert into products (brand_id, category_id, name, slug, price, volume) values
+  ((SELECT id FROM brands WHERE slug = 'fiveism-three'), (SELECT id FROM categories WHERE slug = 'bb-cream'),
+   'ネイキッドタッチ モイスチャライザー', 'fiveism-three-naked-touch', 5720, '30ml');
+
+-- =============================================
+-- Kiehl's (brand_id=26)
+-- =============================================
+
+insert into brands (name, slug, description, official_url) values
+  ('Kiehl''s', 'kiehls', 'ニューヨーク発の老舗スキンケアブランド。170年以上の歴史を持ち、科学とハーブの知識を融合したメンズライン「フェイシャル フュール」が人気。', 'https://www.kiehls.jp');
+
+insert into products (brand_id, category_id, name, slug, price, volume) values
+  ((SELECT id FROM brands WHERE slug = 'kiehls'), (SELECT id FROM categories WHERE slug = 'face-wash'),
+   'フェイシャル フュール ジェル クレンザー', 'kiehls-facial-fuel-cleanser', 3740, '200ml'),
+  ((SELECT id FROM brands WHERE slug = 'kiehls'), (SELECT id FROM categories WHERE slug = 'toner'),
+   'フェイシャル フュール トナー フォー メン', 'kiehls-facial-fuel-toner', 3190, '250ml'),
+  ((SELECT id FROM brands WHERE slug = 'kiehls'), (SELECT id FROM categories WHERE slug = 'emulsion'),
+   'フェイシャル フュール モイスチャライザー フォー メン', 'kiehls-facial-fuel-moisturizer', 5060, '125ml');
+
+-- =============================================
+-- CLINIQUE for MEN (brand_id=27)
+-- =============================================
+
+insert into brands (name, slug, description, official_url) values
+  ('CLINIQUE for MEN', 'clinique-for-men', '皮膚科学に基づくスキンケアブランド。「洗う・除く・潤す」の3ステップで男性特有の肌悩みに対応。', 'https://www.clinique.jp');
+
+insert into products (brand_id, category_id, name, slug, price, volume) values
+  ((SELECT id FROM brands WHERE slug = 'clinique-for-men'), (SELECT id FROM categories WHERE slug = 'face-wash'),
+   'フェース ウォッシュ', 'clinique-men-face-wash', 3850, '200ml'),
+  ((SELECT id FROM brands WHERE slug = 'clinique-for-men'), (SELECT id FROM categories WHERE slug = 'toner'),
+   'エクスフォリエーティング トニック', 'clinique-men-exfoliating-tonic', 3850, '200ml'),
+  ((SELECT id FROM brands WHERE slug = 'clinique-for-men'), (SELECT id FROM categories WHERE slug = 'emulsion'),
+   'モイスチャライジング ローション', 'clinique-men-moisturizing-lotion', 5500, '100ml');
