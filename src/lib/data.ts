@@ -98,9 +98,12 @@ export async function getFilteredProducts(filters: {
   if (brandId != null) query = query.eq("brand_id", brandId);
 
   if (filters.query) {
-    const q = filters.query.trim();
-    if (q) {
-      query = query.or(`name.ilike.%${q}%,brands.name.ilike.%${q}%`);
+    const keywords = filters.query
+      .split(/[\s　]+/)
+      .map((k) => k.replace(/,/g, "").trim())
+      .filter(Boolean);
+    for (const kw of keywords) {
+      query = query.or(`name.ilike.%${kw}%,brands.name.ilike.%${kw}%`);
     }
   }
 
