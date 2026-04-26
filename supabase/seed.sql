@@ -301,11 +301,34 @@ insert into brands (name, slug, description, official_url) values
 
 insert into products (brand_id, category_id, name, slug, price, volume) values
   ((SELECT id FROM brands WHERE slug = 'lab-series'), (SELECT id FROM categories WHERE slug = 'face-wash'),
-   'マルチアクション フェース ウォッシュ', 'lab-series-face-wash', 3740, '100ml'),
+   'マルチアクション フェース ウオッシュ', 'lab-series-face-wash', 3740, '100ml'),
   ((SELECT id FROM brands WHERE slug = 'lab-series'), (SELECT id FROM categories WHERE slug = 'toner'),
-   'ウオーター ローション RE', 'lab-series-water-lotion', 4400, '200ml'),
+   'デイリー ウオーター ローション N', 'lab-series-water-lotion', 4400, '200ml'),
   ((SELECT id FROM brands WHERE slug = 'lab-series'), (SELECT id FROM categories WHERE slug = 'sunscreen'),
-   'オールインワン ディフェンス ローション SPF35', 'lab-series-defense-lotion', 7480, '50ml');
+   'オールインワン ディフェンス ローション SPF35', 'lab-series-defense-lotion', 7480, '50ml'),
+  ((SELECT id FROM brands WHERE slug = 'lab-series'), (SELECT id FROM categories WHERE slug = 'emulsion'),
+   'デイリー EZ フェース ローション N', 'labseries-ez-face-lotion', NULL, '50ml'),
+  ((SELECT id FROM brands WHERE slug = 'lab-series'), (SELECT id FROM categories WHERE slug = 'serum'),
+   'デイリー リペア セラム', 'labseries-serum', NULL, NULL);
+
+UPDATE products SET amazon_rating = 4.7, amazon_review_count = 204,
+  image_url = '/images/products/face-wash/Lab Series-face-wash.jpg'
+WHERE slug = 'lab-series-face-wash';
+
+UPDATE products SET amazon_rating = 4.4, amazon_review_count = 64,
+  image_url = '/images/products/toner/labseries-toner.jpg'
+WHERE slug = 'lab-series-water-lotion';
+
+UPDATE products SET image_url = '/images/products/sunscreen/labseries-sunscreen.jpg'
+WHERE slug = 'lab-series-defense-lotion';
+
+UPDATE products SET amazon_rating = 4.7, amazon_review_count = 65,
+  image_url = '/images/products/emulsion/labseries-emulsion.jpg'
+WHERE slug = 'labseries-ez-face-lotion';
+
+UPDATE products SET amazon_rating = 4.3, amazon_review_count = 49,
+  image_url = '/images/products/serum/labseries-serum.jpg'
+WHERE slug = 'labseries-serum';
 
 -- =============================================
 -- Aesop (brand_id=23)
