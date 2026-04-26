@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getProducts, getCategories, getReviewedProducts, getBrands } from "@/lib/data";
+import { getProducts, getCategories, getReviewedProducts } from "@/lib/data";
 import { ProductCard } from "@/components/ProductCard";
 import { CategoryCard } from "@/components/CategoryCard";
 import { PhoneMockup } from "@/components/PhoneMockup";
@@ -98,33 +98,6 @@ const features = [
   },
 ];
 
-const statIcons = {
-  brands: (
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
-      <line x1="7" y1="7" x2="7.01" y2="7" />
-    </svg>
-  ),
-  aiReviewed: (
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-      <path d="M8 10h8M8 14h4" />
-    </svg>
-  ),
-  products: (
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <rect x="2" y="3" width="20" height="14" rx="2" />
-      <path d="M8 21h8M12 17v4" />
-    </svg>
-  ),
-  update: (
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
-      <polyline points="17 6 23 6 23 12" />
-    </svg>
-  ),
-};
-
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -135,25 +108,12 @@ const jsonLd = {
 };
 
 export default async function Home() {
-  const [products, categories, reviewedProducts, allProducts, brands] =
+  const [products, categories, reviewedProducts] =
     await Promise.all([
       getProducts(4),
       getCategories(),
       getReviewedProducts(5),
-      getProducts(),
-      getBrands(),
     ]);
-
-  const aiReviewedCount = allProducts.filter(
-    (p) => p.ai_review_pros && p.ai_review_pros.length > 0
-  ).length;
-
-  const stats = [
-    { icon: statIcons.brands, value: String(brands.length), label: "掲載ブランド数" },
-    { icon: statIcons.aiReviewed, value: String(aiReviewedCount), label: "AI分析済み商品" },
-    { icon: statIcons.products, value: String(allProducts.length), label: "掲載商品数" },
-    { icon: statIcons.update, value: "毎月更新", label: "データ更新" },
-  ];
 
   return (
     <>
@@ -373,20 +333,27 @@ export default async function Home() {
       {/* Stats */}
       <section className="py-10 md:py-12 border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 mb-2 text-foreground">
-                  {stat.icon}
-                </div>
-                <p className="text-sm text-foreground-muted mb-1">
-                  {stat.label}
-                </p>
-                <p className="text-2xl md:text-3xl font-bold text-foreground">
-                  {stat.value}
-                </p>
+          <div className="flex justify-center gap-12 md:gap-20">
+            <div className="flex items-center gap-3 text-foreground">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                <path d="M8 10h8M8 14h4" />
+              </svg>
+              <div>
+                <p className="text-sm font-bold">AI分析</p>
+                <p className="text-xs text-foreground-muted">数千件の口コミをAIが分析</p>
               </div>
-            ))}
+            </div>
+            <div className="flex items-center gap-3 text-foreground">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                <polyline points="17 6 23 6 23 12" />
+              </svg>
+              <div>
+                <p className="text-sm font-bold">毎月更新</p>
+                <p className="text-xs text-foreground-muted">商品情報を定期的にアップデート</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
