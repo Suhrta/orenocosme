@@ -61,6 +61,53 @@ export async function getProductsByCategory(categorySlug: string): Promise<Produ
   return (data as ProductWithRelations[]) ?? [];
 }
 
+export async function getFilteredProducts(filters: {
+  categorySlug?: string | null;
+  brandSlug?: string | null;
+  query?: string | null;
+}): Promise<ProductWithRelations[]> {
+  let categoryId: number | null = null;
+  let brandId: number | null = null;
+
+  if (filters.categorySlug) {
+    const { data: cat } = await supabase
+      .from("categories")
+      .select("id")
+      .eq("slug", filters.categorySlug)
+      .single();
+    if (!cat) return [];
+    categoryId = cat.id;
+  }
+
+  if (filters.brandSlug) {
+    const { data: brand } = await supabase
+      .from("brands")
+      .select("id")
+      .eq("slug", filters.brandSlug)
+      .single();
+    if (!brand) return [];
+    brandId = brand.id;
+  }
+
+  let query = supabase
+    .from("products")
+    .select("*, brands!inner(*), categories(*)")
+    .order("id");
+
+  if (categoryId != null) query = query.eq("category_id", categoryId);
+  if (brandId != null) query = query.eq("brand_id", brandId);
+
+  if (filters.query) {
+    const q = filters.query.trim();
+    if (q) {
+      query = query.or(`name.ilike.%${q}%,brands.name.ilike.%${q}%`);
+    }
+  }
+
+  const { data } = await query;
+  return (data as ProductWithRelations[]) ?? [];
+}
+
 export async function getProductsByBrand(brandSlug: string): Promise<ProductWithRelations[]> {
   const { data: brand } = await supabase
     .from("brands")
@@ -81,7 +128,7 @@ export async function getRankedProducts(categorySlug?: string): Promise<ProductW
     .from("products")
     .select("*, brands(*), categories(*)")
     .not("amazon_rating", "is", null)
-    .gte("amazon_review_count", 50)
+    .gte("amazon_review_count", 10)
     .order("amazon_rating", { ascending: false })
     .order("amazon_review_count", { ascending: false });
 

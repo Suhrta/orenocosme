@@ -12,6 +12,7 @@ export function AIReviewCarousel({
 }) {
   const [current, setCurrent] = useState(0);
   const [visible, setVisible] = useState(true);
+  const [paused, setPaused] = useState(false);
 
   const goTo = useCallback(
     (next: number) => {
@@ -25,17 +26,24 @@ export function AIReviewCarousel({
   );
 
   useEffect(() => {
+    if (paused) return;
     const timer = setInterval(() => {
       goTo(current + 1);
     }, 3000);
     return () => clearInterval(timer);
-  }, [current, goTo]);
+  }, [current, goTo, paused]);
 
   if (products.length === 0) return null;
   const product = products[current];
 
   return (
-    <div className="max-w-3xl mx-auto relative">
+    <div
+      className="max-w-3xl mx-auto relative"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
+    >
       <button
         onClick={() => goTo(current - 1)}
         className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-10 w-8 h-8 rounded-full bg-white border border-border flex items-center justify-center text-foreground-muted hover:text-foreground hover:border-foreground transition-colors z-10"

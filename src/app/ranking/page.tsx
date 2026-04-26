@@ -64,7 +64,7 @@ export default async function RankingPage(props: PageProps<"/ranking">) {
           {products.length === 0 ? (
             <div className="text-center py-20">
               <p className="text-foreground-muted">
-                該当する商品がありません
+                データ集計中です
               </p>
             </div>
           ) : (

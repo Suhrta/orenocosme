@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { getProducts, getCategories, getReviewedProducts } from "@/lib/data";
 import { ProductCard } from "@/components/ProductCard";
@@ -113,10 +114,13 @@ export default async function Home() {
       <section>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-lg bg-background-secondary">
-            <img
+            <Image
               src="/images/hero-bg.png"
               alt=""
-              className="absolute inset-0 w-full h-full object-cover"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
             />
             <div className="absolute inset-0 bg-white/50 md:bg-transparent" />
             <div className="relative min-h-[400px] md:min-h-[480px] lg:min-h-[540px] flex items-center">

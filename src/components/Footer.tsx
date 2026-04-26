@@ -62,7 +62,7 @@ export function Footer() {
           ))}
         </div>
         <div className="mt-12 pt-8 border-t border-white/20 text-center text-xs text-white/40">
-          &copy; 2026 オレのコスメ All rights reserved.
+          &copy; {new Date().getFullYear()} オレのコスメ All rights reserved.
         </div>
       </div>
     </footer>

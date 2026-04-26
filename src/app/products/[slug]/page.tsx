@@ -46,10 +46,13 @@ export default async function ProductDetailPage(
   const brand = product.brands;
   const category = product.categories;
 
+  const productUrl = `https://oreno-cosme.com/products/${product.slug}`;
+
   const jsonLd: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.name,
+    url: productUrl,
     description: product.description ?? undefined,
     ...(product.image_url && { image: product.image_url }),
     ...(brand && {
@@ -75,11 +78,40 @@ export default async function ProductDetailPage(
     }),
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "トップ",
+        item: "https://oreno-cosme.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "商品一覧",
+        item: "https://oreno-cosme.com/products",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: product.name,
+        item: productUrl,
+      },
+    ],
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <nav className="text-xs text-foreground-muted flex items-center gap-1 flex-wrap">

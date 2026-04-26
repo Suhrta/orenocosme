@@ -24,7 +24,6 @@ export function Header() {
               alt=""
               width={32}
               height={32}
-              unoptimized
             />
             <div className="flex flex-col">
               <span className="text-2xl font-bold tracking-tight text-foreground font-brush">
