@@ -396,7 +396,8 @@ insert into products (brand_id, category_id, name, slug, price, volume, image_ur
    'エクスフォリエーティング トニック', 'clinique-men-exfoliating-tonic', 6050, '200ml',
    '/images/products/toner/clinique-toner.jpg'),
   ((SELECT id FROM brands WHERE slug = 'clinique-for-men'), (SELECT id FROM categories WHERE slug = 'emulsion'),
-   'モイスチャライジング ローション', 'clinique-men-moisturizing-lotion', 8250, '100ml', NULL);
+   'モイスチャライジング ローション', 'clinique-men-moisturizing-lotion', 8250, '100ml',
+   '/images/products/emulsion/clinique-emulsion.jpg');
 
 UPDATE products SET amazon_rating = 4.6, amazon_review_count = 799 WHERE slug = 'clinique-men-face-wash';
 UPDATE products SET amazon_rating = 4.6, amazon_review_count = 90 WHERE slug = 'clinique-men-exfoliating-tonic';
