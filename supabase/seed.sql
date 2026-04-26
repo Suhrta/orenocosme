@@ -111,7 +111,12 @@ insert into products (brand_id, category_id, name, slug, price, volume) values
 insert into products (brand_id, category_id, name, slug, price, volume) values
   (12, 1, 'バランシングステム ジェリーウォッシュ', 'three-men-balancing-stem-jelly-wash', 3300, '100g'),
   (12, 2, 'ジェントリング ローション',       'three-men-lotion',        4400, '100ml'),
-  (12, 3, 'バランシングステム モイスチャライザー', 'three-men-balancing-stem-moisturizer', 4950, '60ml');
+  (12, 3, 'バランシングステム モイスチャライザー', 'three-men-balancing-stem-moisturizer', 4950, '60ml'),
+  (12, 6, 'バランシング プロテクティブ UV クリーム SPF40', 'three-sunscreen', 4620, '30g');
+
+UPDATE products SET amazon_rating = 5.0, amazon_review_count = 3,
+  image_url = '/images/products/sunscreen/three-sunscreen.jpg'
+WHERE slug = 'three-sunscreen';
 
 -- &GINO (brand_id=13)
 insert into products (brand_id, category_id, name, slug, price, volume) values
@@ -369,17 +374,6 @@ insert into products (brand_id, category_id, name, slug, price, volume, image_ur
 UPDATE products SET amazon_rating = 3.6, amazon_review_count = 9 WHERE slug = 'lipps-boy-face-wash';
 UPDATE products SET amazon_rating = 3.9, amazon_review_count = 32 WHERE slug = 'lipps-boy-face-toner';
 UPDATE products SET amazon_rating = 3.9, amazon_review_count = 164 WHERE slug = 'lipps-boy-face-gel';
-
--- =============================================
--- FIVEISM × THREE (brand_id=25)
--- =============================================
-
-insert into brands (name, slug, description, official_url) values
-  ('FIVEISM × THREE', 'fiveism-three', 'THREEが展開するジェンダーニュートラルなメイクアップブランド。「個性」をコンセプトにBBクリームや化粧下地を提案。', 'https://www.threecosmetics.com/fiveism-x-three/');
-
-insert into products (brand_id, category_id, name, slug, price, volume) values
-  ((SELECT id FROM brands WHERE slug = 'fiveism-three'), (SELECT id FROM categories WHERE slug = 'bb-cream'),
-   'ネイキッドタッチ モイスチャライザー', 'fiveism-three-naked-touch', 5720, '30ml');
 
 -- =============================================
 -- CLINIQUE for MEN (brand_id=27)
