@@ -312,7 +312,7 @@ insert into products (brand_id, category_id, name, slug, price, volume) values
    'デイリー リペア セラム', 'labseries-serum', NULL, NULL);
 
 UPDATE products SET amazon_rating = 4.7, amazon_review_count = 204,
-  image_url = '/images/products/face-wash/Lab Series-face-wash.jpg'
+  image_url = '/images/products/face-wash/labseries-face-wash.jpg'
 WHERE slug = 'lab-series-face-wash';
 
 UPDATE products SET amazon_rating = 4.4, amazon_review_count = 64,
