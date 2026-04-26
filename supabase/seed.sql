@@ -233,3 +233,21 @@ UPDATE products SET image_url = '/images/products/uno-face-color-creator.jpg' WH
 UPDATE products SET image_url = '/images/products/shiseido-men-emulsion.jpg' WHERE slug = 'shiseido-men-emulsion';
 UPDATE products SET image_url = '/images/products/null-bb-cream.jpg' WHERE slug = 'null-bb-cream';
 UPDATE products SET image_url = '/images/products/zigen-all-in-one-gel.jpg' WHERE slug = 'zigen-all-in-one-gel';
+
+-- =============================================
+-- RETOUCH (brand_id=21)
+-- =============================================
+
+insert into brands (name, slug, description, official_url) values
+  ('RETOUCH', 'retouch', 'YouTuber/美容師の宮永えいとが立ち上げたメンズグルーミングブランド。BBクリーム・リップクリームなどメンズメイク系を中心に展開。', 'https://re-touch.tokyo/');
+
+insert into products (brand_id, category_id, name, slug, price, volume) values
+  ((SELECT id FROM brands WHERE slug = 'retouch'), (SELECT id FROM categories WHERE slug = 'bb-cream'),
+   'BBクリーム', 'retouch-bb-cream', 3300, '30g');
+
+UPDATE products SET
+  ai_review_pros = ARRAY['自然な仕上がりでバレにくいと好評', 'カバー力がありニキビ跡やクマを隠せる', 'チューブが小さく持ち運びしやすい'],
+  ai_review_cons = ARRAY['3,300円とBBクリームとしてはやや高め', '色味が1色のみで肌色に合わない場合がある', '塗りすぎると厚塗り感が出やすい']
+WHERE slug = 'retouch-bb-cream';
+
+UPDATE products SET amazon_rating = 4.0, amazon_review_count = 241 WHERE slug = 'retouch-bb-cream';
