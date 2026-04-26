@@ -6,6 +6,8 @@ import { CategoryCard } from "@/components/CategoryCard";
 import { PhoneMockup } from "@/components/PhoneMockup";
 import { AIReviewCarousel } from "@/components/AIReviewCarousel";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   description:
     "メンズコスメ選びに迷ったら、ここ。AIレビュー分析×商品データベースで、あなたに合ったメンズコスメが見つかる。",
