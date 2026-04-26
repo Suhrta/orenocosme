@@ -135,14 +135,19 @@ export default async function ProductDetailPage(
             )}
 
             {product.price != null && (
-              <p className="text-3xl font-bold text-foreground mb-6">
-                &yen;{product.price.toLocaleString()}
-                {product.volume && (
-                  <span className="text-sm font-normal text-foreground-muted ml-2">
-                    ({product.volume})
-                  </span>
-                )}
-              </p>
+              <div className="mb-6">
+                <p className="text-3xl font-bold text-foreground">
+                  &yen;{product.price.toLocaleString()}
+                  {product.volume && (
+                    <span className="text-sm font-normal text-foreground-muted ml-2">
+                      ({product.volume})
+                    </span>
+                  )}
+                </p>
+                <p className="text-xs text-foreground-muted mt-1">
+                  ※ 価格は参考価格です。実際の販売価格は各販売サイトでご確認ください。
+                </p>
+              </div>
             )}
 
             {product.description && (
