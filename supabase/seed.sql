@@ -220,19 +220,25 @@ UPDATE products SET amazon_rating = 4.5, amazon_review_count = 75 WHERE slug = '
 -- Product Images
 -- =============================================
 
-UPDATE products SET image_url = '/images/products/bulk-homme-the-face-wash.jpg' WHERE slug = 'bulk-homme-face-wash';
-UPDATE products SET image_url = '/images/products/bulk-homme-toner.jpg' WHERE slug = 'bulk-homme-toner';
-UPDATE products SET image_url = '/images/products/bulk-homme-the-face-lotion.jpg' WHERE slug = 'bulk-homme-lotion';
-UPDATE products SET image_url = '/images/products/bulk-homme-the-face-thesunscreen.jpg' WHERE slug = 'bulk-homme-sunscreen';
-UPDATE products SET image_url = '/images/products/orbis-mr-wash.jpg' WHERE slug = 'orbis-mr-wash';
-UPDATE products SET image_url = '/images/products/orbis-mr-lotion.jpg' WHERE slug = 'orbis-mr-lotion';
-UPDATE products SET image_url = '/images/products/orbis-mr-moisture.jpg' WHERE slug = 'orbis-mr-moisture';
-UPDATE products SET image_url = '/images/products/muji-sensitive-toner.jpg' WHERE slug = 'muji-sensitive-toner';
-UPDATE products SET image_url = '/images/products/muji-all-in-one-gel.jpg' WHERE slug = 'muji-all-in-one-gel';
-UPDATE products SET image_url = '/images/products/uno-face-color-creator.jpg' WHERE slug = 'uno-face-color-creator';
-UPDATE products SET image_url = '/images/products/shiseido-men-emulsion.jpg' WHERE slug = 'shiseido-men-emulsion';
-UPDATE products SET image_url = '/images/products/null-bb-cream.jpg' WHERE slug = 'null-bb-cream';
-UPDATE products SET image_url = '/images/products/zigen-all-in-one-gel.jpg' WHERE slug = 'zigen-all-in-one-gel';
+-- face-wash
+UPDATE products SET image_url = '/images/products/face-wash/bulk-homme-the-face-wash.jpg' WHERE slug = 'bulk-homme-face-wash';
+UPDATE products SET image_url = '/images/products/face-wash/orbis-mr-wash.jpg' WHERE slug = 'orbis-mr-wash';
+-- toner
+UPDATE products SET image_url = '/images/products/toner/bulk-homme-toner.jpg' WHERE slug = 'bulk-homme-toner';
+UPDATE products SET image_url = '/images/products/toner/muji-sensitive-toner.jpg' WHERE slug = 'muji-sensitive-toner';
+UPDATE products SET image_url = '/images/products/toner/orbis-mr-lotion.jpg' WHERE slug = 'orbis-mr-lotion';
+-- emulsion
+UPDATE products SET image_url = '/images/products/emulsion/bulk-homme-the-face-lotion.jpg' WHERE slug = 'bulk-homme-lotion';
+UPDATE products SET image_url = '/images/products/emulsion/orbis-mr-moisture.jpg' WHERE slug = 'orbis-mr-moisture';
+UPDATE products SET image_url = '/images/products/emulsion/shiseido-men-emulsion.jpg' WHERE slug = 'shiseido-men-emulsion';
+-- all-in-one
+UPDATE products SET image_url = '/images/products/all-in-one/muji-all-in-one-gel.jpg' WHERE slug = 'muji-all-in-one-gel';
+UPDATE products SET image_url = '/images/products/all-in-one/zigen-all-in-one-gel.jpg' WHERE slug = 'zigen-all-in-one-gel';
+-- bb-cream
+UPDATE products SET image_url = '/images/products/bb-cream/null-bb-cream.jpg' WHERE slug = 'null-bb-cream';
+UPDATE products SET image_url = '/images/products/bb-cream/uno-face-color-creator.jpg' WHERE slug = 'uno-face-color-creator';
+-- sunscreen
+UPDATE products SET image_url = '/images/products/sunscreen/bulk-homme-the-face-thesunscreen.jpg' WHERE slug = 'bulk-homme-sunscreen';
 
 -- =============================================
 -- RETOUCH (brand_id=21)
