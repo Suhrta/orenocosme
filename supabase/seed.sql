@@ -307,7 +307,7 @@ insert into products (brand_id, category_id, name, slug, price, volume) values
   ((SELECT id FROM brands WHERE slug = 'lab-series'), (SELECT id FROM categories WHERE slug = 'sunscreen'),
    'オールインワン ディフェンス ローション SPF35', 'lab-series-defense-lotion', 7480, '50ml'),
   ((SELECT id FROM brands WHERE slug = 'lab-series'), (SELECT id FROM categories WHERE slug = 'emulsion'),
-   'デイリー EZ フェース ローション N', 'labseries-ez-face-lotion', NULL, '50ml'),
+   'デイリー EZ フェース ローション N', 'labseries-ez-face-lotion', 8470, '50ml'),
   ((SELECT id FROM brands WHERE slug = 'lab-series'), (SELECT id FROM categories WHERE slug = 'serum'),
    'デイリー リペア セラム', 'labseries-serum', NULL, NULL);
 
@@ -355,13 +355,20 @@ insert into products (brand_id, category_id, name, slug, price, volume, image_ur
 insert into brands (name, slug, description, official_url) values
   ('LIPPS BOY', 'lipps-boy', '人気メンズ美容室LIPPSが手がけるメンズコスメブランド。洗顔・化粧水・BBクリームなどスキンケアからメイクまで幅広く展開。', 'https://products.lipps.co.jp/lipps-boy/');
 
-insert into products (brand_id, category_id, name, slug, price, volume) values
+insert into products (brand_id, category_id, name, slug, price, volume, image_url) values
   ((SELECT id FROM brands WHERE slug = 'lipps-boy'), (SELECT id FROM categories WHERE slug = 'face-wash'),
-   'フェイスウォッシュ', 'lipps-boy-face-wash', 1980, '150ml'),
+   '薬用フェイスウォッシュ', 'lipps-boy-face-wash', 980, '150ml',
+   '/images/products/face-wash/lipps-boy-face-wash.jpg'),
   ((SELECT id FROM brands WHERE slug = 'lipps-boy'), (SELECT id FROM categories WHERE slug = 'toner'),
-   'フェイストナー', 'lipps-boy-face-toner', 1980, '250ml'),
+   '薬用フェイストナー', 'lipps-boy-face-toner', 1280, '250ml',
+   '/images/products/toner/lipps-boy-toner.jpg'),
   ((SELECT id FROM brands WHERE slug = 'lipps-boy'), (SELECT id FROM categories WHERE slug = 'bb-cream'),
-   'フェイスジェル BBクリーム', 'lipps-boy-face-gel', 2420, '25g');
+   'フェイスジェル BBクリーム SPF26', 'lipps-boy-face-gel', 1450, '25g',
+   '/images/products/bb-cream/lipps-boy-bb-cream.jpg');
+
+UPDATE products SET amazon_rating = 3.6, amazon_review_count = 9 WHERE slug = 'lipps-boy-face-wash';
+UPDATE products SET amazon_rating = 3.9, amazon_review_count = 32 WHERE slug = 'lipps-boy-face-toner';
+UPDATE products SET amazon_rating = 3.9, amazon_review_count = 164 WHERE slug = 'lipps-boy-face-gel';
 
 -- =============================================
 -- FIVEISM × THREE (brand_id=25)
