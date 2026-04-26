@@ -19,7 +19,7 @@ export function CategoryCard({ category }: { category: Category }) {
   return (
     <Link
       href={`/products?category=${category.slug}`}
-      className="group block text-center"
+      className="group block text-center w-[160px] shrink-0"
     >
       <div className="aspect-square bg-background-secondary rounded-lg overflow-hidden mb-3 relative transition-all duration-200 group-hover:shadow-lg group-hover:-translate-y-1">
         {imageUrl ? (

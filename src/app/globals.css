@@ -51,3 +51,11 @@ html {
 .animate-fade-in-up-delay-2 {
   animation: fadeInUp 0.8s ease-out 0.5s both;
 }
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
