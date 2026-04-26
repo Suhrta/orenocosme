@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { getCategories, getRankedProducts } from "@/lib/data";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "メンズコスメランキング",
   description:

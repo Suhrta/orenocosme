@@ -7,6 +7,8 @@ import {
 } from "@/lib/data";
 import { ProductCard } from "@/components/ProductCard";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "メンズコスメ商品一覧",
   description:
