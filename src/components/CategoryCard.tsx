@@ -4,12 +4,12 @@ import { Category } from "@/lib/types";
 import { categoryEnNames } from "@/lib/data";
 
 const categoryImages: Record<string, string> = {
-  "face-wash": "/images/products/face-wash.png",
-  toner: "/images/products/toner.png",
-  emulsion: "/images/products/emulsion.png",
-  "all-in-one": "/images/products/all-in-one.png",
-  "bb-cream": "/images/products/bb-cream.png",
-  sunscreen: "/images/categories/sunscreen.png",
+  "face-wash": "/images/products/face-wash/face-wash.png",
+  toner: "/images/products/toner/toner.png",
+  emulsion: "/images/products/emulsion/emulsion.png",
+  "all-in-one": "/images/products/all-in-one/all-in-one.png",
+  "bb-cream": "/images/products/bb-cream/bb-cream.png",
+  sunscreen: "/images/products/sunscreen/sunscreen.png",
 };
 
 export function CategoryCard({ category }: { category: Category }) {
