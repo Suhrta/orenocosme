@@ -91,7 +91,7 @@ export async function getFilteredProducts(filters: {
 
   let query = supabase
     .from("products")
-    .select("*, brands!inner(*), categories(*)")
+    .select("*, brands(*), categories(*)")
     .order("id");
 
   if (categoryId != null) query = query.eq("category_id", categoryId);
@@ -100,10 +100,20 @@ export async function getFilteredProducts(filters: {
   if (filters.query) {
     const keywords = filters.query
       .split(/[\s　]+/)
-      .map((k) => k.replace(/,/g, "").trim())
+      .map((k) => k.replace(/[,()]/g, "").trim())
       .filter(Boolean);
     for (const kw of keywords) {
-      query = query.or(`name.ilike.%${kw}%,brands.name.ilike.%${kw}%`);
+      const { data: matchingBrands } = await supabase
+        .from("brands")
+        .select("id")
+        .ilike("name", `%${kw}%`);
+      const brandIds = (matchingBrands ?? []).map((b) => b.id);
+
+      const orParts = [`name.ilike.%${kw}%`];
+      if (brandIds.length > 0) {
+        orParts.push(`brand_id.in.(${brandIds.join(",")})`);
+      }
+      query = query.or(orParts.join(","));
     }
   }
 
