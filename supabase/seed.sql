@@ -154,8 +154,7 @@ insert into products (brand_id, category_id, name, slug, price, volume) values
 
 -- サクセス (brand_id=20)
 insert into products (brand_id, category_id, name, slug, price, volume) values
-  (20, 1, '洗顔フォーム',                    'success-face-wash',         550, '120g'),
-  (20, 2, '化粧水',                          'success-toner',             880, '180ml');
+  (20, 1, '洗顔フォーム',                    'success-face-wash',         550, '120g');
 
 -- =============================================
 -- AI Review Pros / Cons
@@ -224,9 +223,15 @@ UPDATE products SET amazon_rating = 4.5, amazon_review_count = 75 WHERE slug = '
 UPDATE products SET image_url = '/images/products/face-wash/bulk-homme-the-face-wash.jpg' WHERE slug = 'bulk-homme-face-wash';
 UPDATE products SET image_url = '/images/products/face-wash/orbis-mr-wash.jpg' WHERE slug = 'orbis-mr-wash';
 -- toner
+UPDATE products SET image_url = '/images/products/toner/astalift-lotion.jpg' WHERE slug = 'astalift-men-lotion';
 UPDATE products SET image_url = '/images/products/toner/bulk-homme-toner.jpg' WHERE slug = 'bulk-homme-toner';
+UPDATE products SET image_url = '/images/products/toner/dhc-men-skin-lotion.png' WHERE slug = 'dhc-men-skin-lotion';
+UPDATE products SET image_url = '/images/products/toner/lucido-total-care-lotion.jpg' WHERE slug = 'lucido-total-care-lotion';
 UPDATE products SET image_url = '/images/products/toner/muji-sensitive-toner.jpg' WHERE slug = 'muji-sensitive-toner';
 UPDATE products SET image_url = '/images/products/toner/orbis-mr-lotion.jpg' WHERE slug = 'orbis-mr-lotion';
+UPDATE products SET image_url = '/images/products/toner/oxy-moist-lotion.jpg' WHERE slug = 'oxy-moist-lotion';
+UPDATE products SET image_url = '/images/products/toner/shiseido-men-lotion.jpg' WHERE slug = 'shiseido-men-lotion';
+UPDATE products SET image_url = '/images/products/toner/three-men-balancing-stem-lotion.jpg' WHERE slug = 'three-men-lotion';
 -- emulsion
 UPDATE products SET image_url = '/images/products/emulsion/bulk-homme-the-face-lotion.jpg' WHERE slug = 'bulk-homme-lotion';
 UPDATE products SET image_url = '/images/products/emulsion/orbis-mr-moisture.jpg' WHERE slug = 'orbis-mr-moisture';
