@@ -98,7 +98,7 @@ insert into products (brand_id, category_id, name, slug, price, volume) values
 -- マニフィーク (brand_id=10)
 insert into products (brand_id, category_id, name, slug, price, volume) values
   (10, 1, 'ウォッシュ',                     'magnifique-wash',         1540, '130g'),
-  (10, 2, 'トナー',                         'magnifique-toner',        1980, '150ml'),
+  (10, 4, 'トナー',                         'magnifique-toner',        1980, '150ml'),
   (10, 3, 'ミルク',                         'magnifique-milk',         1980, '100ml');
 
 -- BOTCHAN (brand_id=11)
