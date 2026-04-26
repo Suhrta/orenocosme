@@ -55,7 +55,7 @@ export function PhoneMockup() {
           />
 
           {/* Screen */}
-          <div className="relative flex h-full w-full flex-col overflow-hidden rounded-[48px] bg-white px-5 pt-8 pb-3">
+          <div className="relative flex h-full w-full flex-col overflow-hidden rounded-[48px] bg-white px-3 pt-7 pb-2">
             {/* Dynamic Island */}
             <div
               className="absolute top-0 left-1/2 z-[3] h-[28px] w-[90px] -translate-x-1/2 rounded-b-[16px] bg-[#0B0F19]"
@@ -71,36 +71,36 @@ export function PhoneMockup() {
             />
 
             {/* Skin Type */}
-            <div className="text-center mb-3 mt-4">
-              <span className="inline-block text-[8px] font-medium px-2 py-0.5 bg-[#111] text-white rounded-full mb-1.5">
+            <div className="text-center mb-2 mt-3">
+              <span className="inline-block text-[10px] font-medium px-2.5 py-0.5 bg-[#111] text-white rounded-full mb-0.5">
                 あなたの肌タイプ
               </span>
-              <p className="text-[18px] font-bold leading-tight text-[#111] mb-0.5">
+              <p className="text-[24px] font-bold leading-tight text-[#111] mb-0.5">
                 混合肌
               </p>
-              <p className="text-[9px] text-[#888]">
+              <p className="text-[10px] text-[#888]">
                 Tゾーンはテカり、頬は乾きやすい肌質
               </p>
             </div>
 
             {/* Overall Score */}
-            <div className="flex items-baseline justify-center gap-0.5 mb-3">
-              <span className="text-[9px] text-[#999] mr-1">総合スコア</span>
-              <span className="text-[32px] font-bold leading-none text-[#111]">
+            <div className="flex items-baseline justify-center gap-0.5 mb-2">
+              <span className="text-[11px] text-[#999] mr-1">総合スコア</span>
+              <span className="text-[44px] font-bold leading-none text-[#111]">
                 82
               </span>
-              <span className="text-[9px] text-[#999]">/100</span>
+              <span className="text-[11px] text-[#999]">/100</span>
             </div>
 
             {/* Radar Chart */}
             <RadarScoreChart
               scores={{ moisture: 85, oil_balance: 78, texture: 80, firmness: 75 }}
-              size={150}
-              fontSize={8}
+              size={200}
+              fontSize={11}
             />
 
             {/* AI Advice */}
-            <div className="mt-3 border border-[#eee] rounded-lg px-3 py-2.5">
+            <div className="mt-2 border border-[#eee] rounded-lg px-3 py-2.5">
               <p className="text-[9px] font-bold text-[#111] mb-1.5">AIアドバイス</p>
               <p className="text-[8px] text-[#888] leading-relaxed">
                 Tゾーンのテカリと頬の乾燥には、部位ごとのケアが効果的。さっぱり系の化粧水と保湿乳液の組み合わせがおすすめです。

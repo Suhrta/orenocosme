@@ -194,9 +194,6 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-4 items-center">
             <div className="text-center md:text-left md:justify-self-end">
-              <p className="text-sm text-foreground-muted mb-2">
-                AIがあなたの肌を分析
-              </p>
               <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground font-brush">
                   AI肌診断
