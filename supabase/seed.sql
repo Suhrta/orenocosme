@@ -80,7 +80,6 @@ insert into products (brand_id, category_id, name, slug, price, volume) values
 -- ZIGEN (brand_id=7)
 insert into products (brand_id, category_id, name, slug, price, volume) values
   (7, 4, 'オールインワン フェイスジェル',    'zigen-all-in-one-gel',   4400, '100g'),
-  (7, 6, 'UVクリームジェル',                'zigen-uv-cream-gel',     3300, '50g'),
   (7, 1, 'フェイスウォッシュ',              'zigen-face-wash',         2750, '100g');
 
 -- GATSBY (brand_id=8)
@@ -111,22 +110,22 @@ insert into products (brand_id, category_id, name, slug, price, volume) values
 insert into products (brand_id, category_id, name, slug, price, volume) values
   (12, 1, 'バランシングステム ジェリーウォッシュ', 'three-men-balancing-stem-jelly-wash', 3300, '100g'),
   (12, 2, 'ジェントリング ローション',       'three-men-lotion',        4400, '100ml'),
-  (12, 3, 'ジェントリング エマルジョン',     'three-men-emulsion',      4950, '60ml');
+  (12, 3, 'バランシングステム モイスチャライザー', 'three-men-balancing-stem-moisturizer', 4950, '60ml');
 
 -- &GINO (brand_id=13)
 insert into products (brand_id, category_id, name, slug, price, volume) values
   (13, 1, 'プレミアムフェイスウォッシュ グランデ', 'andgino-premium-wash',   3960, '100g'),
-  (13, 4, 'アクアモイス',                          'andgino-aqua-mois',      5280, '50ml');
+  (13, 3, 'アクアモイス',                          'andgino-aqua-mois',      5280, '50ml');
 
 -- クワトロボタニコ (brand_id=14)
 insert into products (brand_id, category_id, name, slug, price, volume) values
   (14, 1, 'ボタニカル フェイスウォッシュ',          'quattro-face-wash',       1980, '120g'),
-  (14, 4, 'ボタニカル ローション&アフターシェーブ', 'quattro-botanical-lotion', 2200, '115ml');
+  (14, 4, 'ボタニカル ローション&アフターシェーブ', 'quattro-botanical-lotion', 2200, '115ml'),
+  (14, 6, 'ボタニカル オイルコントロール＆UVブロック', 'quattro-botanical-sunscreen', NULL, NULL);
 
 -- ASTALIFT MEN (brand_id=15)
 insert into products (brand_id, category_id, name, slug, price, volume) values
-  (15, 2, 'モイストローション',              'astalift-men-lotion',     3960, '120ml'),
-  (15, 4, 'モイストクリア ジェリー',         'astalift-men-jelly',      4950, '60g');
+  (15, 2, 'モイストローション',              'astalift-men-lotion',     3960, '120ml');
 
 -- ニベアメン (brand_id=16)
 insert into products (brand_id, category_id, name, slug, price, volume) values
@@ -143,14 +142,13 @@ insert into products (brand_id, category_id, name, slug, price, volume) values
 -- メンズビオレ (brand_id=18)
 insert into products (brand_id, category_id, name, slug, price, volume) values
   (18, 1, '泡タイプ洗顔',                    'mens-biore-foam-wash',     440, '150ml'),
-  (18, 2, '浸透化粧水 ローションタイプ',      'mens-biore-lotion',        770, '180ml'),
-  (18, 6, 'UV パーフェクトプロテクト',        'mens-biore-uv-protect',    770, '30ml');
+  (18, 2, '浸透化粧水 ローションタイプ',      'mens-biore-lotion',        770, '180ml');
 
 -- OXY (brand_id=19)
 insert into products (brand_id, category_id, name, slug, price, volume) values
   (19, 1, 'パーフェクトウォッシュ',           'oxy-perfect-wash',         440, '130g'),
   (19, 2, 'モイストローション',               'oxy-moist-lotion',         660, '170ml'),
-  (19, 4, 'オールインワンジェル',             'oxy-all-in-one-gel',       880, '90g');
+  (19, 4, 'パーフェクトモイスチャー',           'oxy-perfect-moisture',     880, '90g');
 
 -- =============================================
 -- AI Review Pros / Cons
@@ -247,17 +245,31 @@ UPDATE products SET image_url = '/images/products/toner/shiseido-men-lotion.jpg'
 UPDATE products SET image_url = '/images/products/toner/three-men-balancing-stem-lotion.jpg' WHERE slug = 'three-men-lotion';
 UPDATE products SET image_url = '/images/products/toner/botchan-forest-toner.jpg' WHERE slug = 'botchan-forest-toner';
 -- emulsion
+UPDATE products SET image_url = '/images/products/emulsion/botchan-flower-moisturizer.jpg' WHERE slug = 'botchan-flower-moisturizer';
 UPDATE products SET image_url = '/images/products/emulsion/bulk-homme-the-face-lotion.jpg' WHERE slug = 'bulk-homme-lotion';
+UPDATE products SET image_url = '/images/products/emulsion/magnifique-milk.jpg' WHERE slug = 'magnifique-milk';
+UPDATE products SET image_url = '/images/products/emulsion/muji-sensitive-emulsion.jpg' WHERE slug = 'muji-sensitive-emulsion';
 UPDATE products SET image_url = '/images/products/emulsion/orbis-mr-moisture.jpg' WHERE slug = 'orbis-mr-moisture';
 UPDATE products SET image_url = '/images/products/emulsion/shiseido-men-emulsion.jpg' WHERE slug = 'shiseido-men-emulsion';
+UPDATE products SET image_url = '/images/products/emulsion/three-men-emulsion.jpg' WHERE slug = 'three-men-balancing-stem-moisturizer';
 -- all-in-one
+UPDATE products SET image_url = '/images/products/all-in-one/magnifique-all-in-one.jpg' WHERE slug = 'magnifique-toner';
 UPDATE products SET image_url = '/images/products/all-in-one/muji-all-in-one-gel.jpg' WHERE slug = 'muji-all-in-one-gel';
+UPDATE products SET image_url = '/images/products/all-in-one/null-all-in-one-mist.jpg' WHERE slug = 'null-all-in-one-mist';
+UPDATE products SET image_url = '/images/products/all-in-one/oxy-all-in-one-gel.jpg' WHERE slug = 'oxy-perfect-moisture';
+UPDATE products SET image_url = '/images/products/all-in-one/quattoro-all-in-one.jpg' WHERE slug = 'quattro-botanical-lotion';
+UPDATE products SET image_url = '/images/products/all-in-one/uno-cream-perfection.jpg' WHERE slug = 'uno-cream-perfection';
 UPDATE products SET image_url = '/images/products/all-in-one/zigen-all-in-one-gel.jpg' WHERE slug = 'zigen-all-in-one-gel';
 -- bb-cream
 UPDATE products SET image_url = '/images/products/bb-cream/null-bb-cream.jpg' WHERE slug = 'null-bb-cream';
+UPDATE products SET image_url = '/images/products/bb-cream/retouch-bbcream.jpg' WHERE slug = 'retouch-bb-cream';
 UPDATE products SET image_url = '/images/products/bb-cream/uno-face-color-creator.jpg' WHERE slug = 'uno-face-color-creator';
 -- sunscreen
 UPDATE products SET image_url = '/images/products/sunscreen/bulk-homme-the-face-thesunscreen.jpg' WHERE slug = 'bulk-homme-sunscreen';
+UPDATE products SET image_url = '/images/products/all-in-one/gatsby-perfect-uv-spray.jpg' WHERE slug = 'gatsby-perfect-uv-spray';
+UPDATE products SET image_url = '/images/products/sunscreen/lucido-uv-block.jpg' WHERE slug = 'lucido-uv-block';
+UPDATE products SET image_url = '/images/products/sunscreen/null-sunscreen-gel.jpg' WHERE slug = 'null-sunscreen-gel';
+UPDATE products SET image_url = '/images/products/sunscreen/quattro-botanical-sunscreen.jpg' WHERE slug = 'quattro-botanical-sunscreen';
 
 -- =============================================
 -- RETOUCH (brand_id=21)
