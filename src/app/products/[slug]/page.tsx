@@ -283,9 +283,9 @@ export default async function ProductDetailPage(
                 Amazonで購入
               </a>
               <a
-                href={product.affiliate_links?.rakuten ?? `https://search.rakuten.co.jp/search/mall/${encodeURIComponent((brand?.name ?? '') + ' ' + product.name)}/`}
+                href={product.affiliate_links?.rakuten ?? `https://hb.afl.rakuten.co.jp/ichiba/5419daa8.c81c3582.5419daa9.cef22a14/?pc=${encodeURIComponent(`https://search.rakuten.co.jp/search/mall/${(brand?.name ?? '') + ' ' + product.name}/`)}&link_type=text`}
                 target="_blank"
-                rel="noopener"
+                rel="nofollow sponsored noopener"
                 className="flex-1 inline-flex items-center justify-center px-6 py-3 border border-foreground text-foreground font-medium rounded hover:bg-foreground hover:text-white transition-colors text-sm"
               >
                 楽天市場で購入
