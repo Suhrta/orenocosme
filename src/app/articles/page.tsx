@@ -3,9 +3,9 @@ import Link from "next/link";
 import { getArticles } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "コラム",
+  title: "メンズスキンケアコラム｜初心者ガイド・年代別ケア・トレンド情報",
   description:
-    "メンズスキンケアに関するコラム・お役立ち情報。初心者向けガイドから年代別ケアまで幅広くお届けします。",
+    "メンズスキンケアの基礎知識からトレンドまで。洗顔のやり方・化粧水の選び方・20代30代40代の年代別ケアなど、初心者にもわかりやすく解説。",
 };
 
 const categoryLabels: Record<string, string> = {

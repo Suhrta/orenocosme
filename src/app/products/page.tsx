@@ -11,9 +11,9 @@ import { ProductSearchForm } from "@/components/ProductSearchForm";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "メンズコスメ商品一覧",
+  title: "メンズコスメ商品一覧｜カテゴリ・ブランド・価格帯で検索",
   description:
-    "メンズコスメの商品一覧。洗顔料・化粧水・乳液・オールインワン・BBクリーム・日焼け止めなどカテゴリ別に探せます。",
+    "メンズコスメの商品データベース。洗顔料・化粧水・乳液・オールインワン・BBクリーム・日焼け止めなどカテゴリ別に検索。AIレビュー分析つきで比較しやすい。",
 };
 
 export default async function ProductsPage(props: PageProps<"/products">) {

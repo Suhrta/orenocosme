@@ -3,9 +3,9 @@ import Link from "next/link";
 import { getBrands } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "メンズコスメブランド一覧",
+  title: "メンズコスメブランド一覧｜人気ブランドの特徴・商品を比較",
   description:
-    "取り扱いメンズコスメブランドの一覧。各ブランドの特徴や商品ラインナップを紹介。",
+    "バルクオム・NULL・ORBIS Mr.・無印良品など人気メンズコスメブランドの特徴・価格帯・商品ラインナップを一覧で比較。自分に合うブランドが見つかる。",
 };
 
 export default async function BrandsPage() {

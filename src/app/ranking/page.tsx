@@ -6,9 +6,9 @@ import { getCategories, getRankedProducts } from "@/lib/data";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "メンズコスメランキング",
+  title: "メンズコスメおすすめランキング【2026年最新】洗顔・化粧水・乳液TOP10",
   description:
-    "Amazon評価が高いメンズコスメをカテゴリ別にランキング形式で紹介。口コミ分析に基づいた信頼できるランキング。",
+    "Amazon口コミをAIが分析して決定したメンズコスメランキング。洗顔料・化粧水・乳液・オールインワンなどカテゴリ別TOP10を毎月更新。本当に評価が高いアイテムだけ厳選。",
 };
 
 export default async function RankingPage(props: PageProps<"/ranking">) {

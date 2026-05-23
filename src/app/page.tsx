@@ -12,9 +12,9 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   description:
-    "メンズコスメ選びに迷ったら、ここ。AIレビュー分析×商品データベースで、あなたに合ったメンズコスメが見つかる。",
+    "メンズコスメ選びに迷ったら、ここ。AIがAmazon口コミを分析し、洗顔・化粧水・乳液など本当に良いメンズコスメが見つかる。ランキング・肌診断・ブランド別比較も。",
   openGraph: {
-    title: "オレのコスメ | メンズコスメの総合ガイド",
+    title: "オレのコスメ｜メンズコスメおすすめ比較・AIレビュー分析【2026年】",
   },
 };
 
