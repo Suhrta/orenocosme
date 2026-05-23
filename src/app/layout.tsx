@@ -22,11 +22,11 @@ const zenAntique = Zen_Antique({
 export const metadata: Metadata = {
   metadataBase: new URL("https://oreno-cosme.com"),
   title: {
-    default: "オレのコスメ｜メンズコスメおすすめ比較・AIレビュー分析【2026年】",
+    default: "オレのコスメ｜メンズコスメの口コミ分析・おすすめ比較【2026年】",
     template: "%s | オレのコスメ",
   },
   description:
-    "メンズコスメ選びに迷ったら、ここ。AIがAmazon口コミを分析し、洗顔・化粧水・乳液など本当に良いメンズコスメが見つかる。ランキング・肌診断・ブランド別比較も。",
+    "メンズコスメの口コミをAIが徹底分析。洗顔・化粧水・乳液・オールインワンの本当の評判がわかる。Amazon・楽天の口コミからメリット・デメリットを要約。ランキング・肌診断も無料。",
   openGraph: {
     siteName: "オレのコスメ",
     type: "website",
