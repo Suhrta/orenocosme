@@ -42,3 +42,6 @@ next-env.d.ts
 
 # 楽天取り込みの作業用リスト（各自のローカルで編集する）
 /scripts/products-to-add.json
+# AI評価・メリデメ取り込みの作業用ファイル
+/scripts/ai-todo.json
+/scripts/ai-data.json
