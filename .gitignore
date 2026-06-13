@@ -44,4 +44,5 @@ next-env.d.ts
 /scripts/products-to-add.json
 # AI評価・メリデメ取り込みの作業用ファイル
 /scripts/ai-todo.json
+/scripts/ai-todo.txt
 /scripts/ai-data.json
