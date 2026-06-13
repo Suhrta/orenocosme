@@ -27,7 +27,13 @@ const supabase = createClient(
 );
 
 const COMMIT = process.argv.includes("--commit");
-const INPUT = path.join(__dirname, "ai-data.json");
+// 入力ファイルは引数で指定可（既定 scripts/ai-data.json）。
+//   node scripts/import-ai-data.js                                 → scripts/ai-data.json
+//   node scripts/import-ai-data.js scripts/ai-todo-enriched.json   → 指定ファイル
+const FILE_ARG = process.argv.slice(2).find((a) => !a.startsWith("--"));
+const INPUT = FILE_ARG
+  ? path.resolve(FILE_ARG)
+  : path.join(__dirname, "ai-data.json");
 
 function buildUpdate(e) {
   const u = {};
