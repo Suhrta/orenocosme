@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# 楽天取り込みの作業用リスト（各自のローカルで編集する）
+/scripts/products-to-add.json
