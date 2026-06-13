@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getCategories, getRankedProducts } from "@/lib/data";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "メンズコスメおすすめランキング【2026年最新】洗顔・化粧水・乳液TOP10",

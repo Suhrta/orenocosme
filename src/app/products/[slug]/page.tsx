@@ -277,7 +277,7 @@ export default async function ProductDetailPage(
               <a
                 href={product.affiliate_links?.amazon ?? `https://www.amazon.co.jp/s?k=${encodeURIComponent((brand?.name ?? '') + ' ' + product.name)}`}
                 target="_blank"
-                rel="noopener"
+                rel="sponsored nofollow noopener"
                 className="flex-1 inline-flex items-center justify-center px-6 py-3 bg-foreground text-white font-medium rounded hover:bg-foreground/90 transition-colors text-sm"
               >
                 Amazonで購入
