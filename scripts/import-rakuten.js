@@ -182,6 +182,14 @@ async function main() {
   console.log(
     `\n完了: ${added} ${COMMIT ? "追加" : "追加予定"} / ${skipped} スキップ / ${failed} 失敗`
   );
+
+  if (COMMIT && added > 0) {
+    console.log(
+      "\n⚠ 画像をサイトに反映するには、必ずコミット＆プッシュしてください:\n" +
+        "    git add public/images/products && git commit -m \"feat: 商品画像を追加\" && git push\n" +
+        "  （DBの商品データは即時反映されますが、画像は静的ファイルなのでデプロイが必要です）"
+    );
+  }
 }
 
 main().catch((err) => {
