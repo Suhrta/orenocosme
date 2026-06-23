@@ -10,11 +10,32 @@ import { ProductSearchForm } from "@/components/ProductSearchForm";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "メンズコスメ商品一覧｜カテゴリ・ブランド・価格帯で検索",
-  description:
-    "メンズコスメの商品データベース。洗顔料・化粧水・乳液・オールインワン・BBクリーム・日焼け止めなどカテゴリ別に検索。AIレビュー分析つきで比較しやすい。",
-};
+export async function generateMetadata(
+  props: PageProps<"/products">
+): Promise<Metadata> {
+  const sp = await props.searchParams;
+  const category = typeof sp.category === "string" ? sp.category : null;
+  const brand = typeof sp.brand === "string" ? sp.brand : null;
+  const q = typeof sp.q === "string" ? sp.q : null;
+
+  const base: Metadata = {
+    title: "メンズコスメ商品一覧｜カテゴリ・ブランド・価格帯で検索",
+    description:
+      "メンズコスメの商品データベース。洗顔料・化粧水・乳液・オールインワン・BBクリーム・日焼け止めなどカテゴリ別に検索。AIレビュー分析つきで比較しやすい。",
+  };
+
+  // 検索結果・複合フィルタの組み合わせURLは重複/薄いページなので noindex（クロールはfollow）
+  if (q || (category && brand)) {
+    return { ...base, robots: { index: false, follow: true } };
+  }
+  // 単一フィルタは自己正規化、無条件は /products に正規化
+  const canonical = category
+    ? `/products?category=${category}`
+    : brand
+      ? `/products?brand=${brand}`
+      : "/products";
+  return { ...base, alternates: { canonical } };
+}
 
 export default async function ProductsPage(props: PageProps<"/products">) {
   const searchParams = await props.searchParams;
@@ -50,9 +71,11 @@ export default async function ProductsPage(props: PageProps<"/products">) {
     <>
       <section className="bg-background-secondary py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-foreground mb-2">商品一覧</h1>
+          <h1 className="text-3xl font-bold text-foreground mb-2">
+            メンズコスメ 商品一覧
+          </h1>
           <p className="text-sm text-foreground-muted mb-6">
-            メンズコスメをカテゴリーから探す
+            メンズコスメをカテゴリー・ブランドから探す
           </p>
           <div className="max-w-2xl">
             <ProductSearchForm />

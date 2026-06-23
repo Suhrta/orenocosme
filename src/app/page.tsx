@@ -13,6 +13,7 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   description:
     "メンズコスメの口コミをAIが徹底分析。洗顔・化粧水・乳液・オールインワンの本当の評判がわかる。ランキング・肌診断も無料。",
+  alternates: { canonical: "/" },
   openGraph: {
     title: "オレのコスメ｜メンズコスメの口コミ分析・おすすめ比較【2026年】",
   },
@@ -94,6 +95,14 @@ const jsonLd = {
   url: "https://oreno-cosme.com",
   description:
     "メンズコスメ選びに迷ったら、ここ。AIレビュー分析×商品データベースで、あなたに合ったメンズコスメが見つかる。",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: "https://oreno-cosme.com/products?q={search_term_string}",
+    },
+    "query-input": "required name=search_term_string",
+  },
 };
 
 export default async function Home() {

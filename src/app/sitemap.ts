@@ -84,11 +84,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
+  // カテゴリは実ページ /ranking/[category] を正規URLとして登録（旧 /products?category= は重複のため不掲載）
   const categoryPages: MetadataRoute.Sitemap = (categories ?? []).map(
     (c) => ({
-      url: `${BASE_URL}/products?category=${c.slug}`,
+      url: `${BASE_URL}/ranking/${c.slug}`,
+      lastModified: new Date(),
       changeFrequency: "daily",
-      priority: 0.7,
+      priority: 0.8,
     })
   );
 

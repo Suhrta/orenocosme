@@ -10,6 +10,8 @@ import {
 } from "@/lib/data";
 import { ProductCard } from "@/components/ProductCard";
 
+export const revalidate = 3600;
+
 export async function generateStaticParams() {
   const articles = await getArticles();
   return articles.map((a) => ({ slug: a.slug }));
@@ -32,7 +34,11 @@ export async function generateMetadata(
   return {
     title: article.title,
     description,
+    alternates: {
+      canonical: `https://oreno-cosme.com/articles/${article.slug}`,
+    },
     openGraph: {
+      type: "article",
       title: `${article.title} | オレのコスメ`,
       description,
     },
@@ -58,11 +64,16 @@ export default async function ArticleDetailPage(
     ? await getProductsByIds(article.related_product_ids)
     : [];
 
+  const articleUrl = `https://oreno-cosme.com/articles/${article.slug}`;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: article.title,
     datePublished: article.published_at,
+    dateModified: article.published_at ?? article.created_at,
+    mainEntityOfPage: articleUrl,
+    image: "https://oreno-cosme.com/images/hero-bg.png",
     author: {
       "@type": "Organization",
       name: "オレのコスメ",
@@ -71,7 +82,21 @@ export default async function ArticleDetailPage(
     publisher: {
       "@type": "Organization",
       name: "オレのコスメ",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://oreno-cosme.com/icon.png",
+      },
     },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "トップ", item: "https://oreno-cosme.com" },
+      { "@type": "ListItem", position: 2, name: "コラム", item: "https://oreno-cosme.com/articles" },
+      { "@type": "ListItem", position: 3, name: article.title, item: articleUrl },
+    ],
   };
 
   return (
@@ -79,6 +104,10 @@ export default async function ArticleDetailPage(
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">

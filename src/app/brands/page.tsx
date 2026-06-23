@@ -3,9 +3,10 @@ import Link from "next/link";
 import { getBrands } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "メンズコスメブランド一覧｜人気ブランドの特徴・商品を比較",
+  title: "メンズコスメブランド一覧｜人気ブランドの特徴・商品を比較【2026年】",
   description:
     "バルクオム・NULL・ORBIS Mr.・無印良品など人気メンズコスメブランドの特徴・価格帯・商品ラインナップを一覧で比較。自分に合うブランドが見つかる。",
+  alternates: { canonical: "/brands" },
 };
 
 export default async function BrandsPage() {
@@ -39,10 +40,10 @@ export default async function BrandsPage() {
       <section className="bg-background-secondary py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">
-            ブランド一覧
+            メンズコスメ ブランド一覧
           </h1>
           <p className="text-sm text-foreground-muted">
-            取り扱いメンズコスメブランド
+            人気メンズコスメブランドの特徴・商品を比較
           </p>
         </div>
       </section>

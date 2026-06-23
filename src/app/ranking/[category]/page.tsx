@@ -1,46 +1,54 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { getCategories, getRankedProducts } from "@/lib/data";
 
 export const revalidate = 3600;
 
+export async function generateStaticParams() {
+  const categories = await getCategories();
+  return categories.map((c) => ({ category: c.slug }));
+}
+
+async function findCategory(slug: string) {
+  const categories = await getCategories();
+  return categories.find((c) => c.slug === slug) ?? null;
+}
+
 export async function generateMetadata(
-  props: PageProps<"/ranking">
+  props: PageProps<"/ranking/[category]">
 ): Promise<Metadata> {
-  const sp = await props.searchParams;
-  const category = typeof sp.category === "string" ? sp.category : null;
+  const { category: slug } = await props.params;
+  const category = await findCategory(slug);
+  if (!category) return {};
+  const title = `${category.name}のおすすめランキング【2026年最新】メンズコスメ人気${category.name}TOP10`;
+  const description = `メンズ${category.name}の人気ランキング。Amazonの口コミ評価が高い順に厳選。AIが分析したメリット・デメリット・価格・評価を比較して、本当に評価の高い${category.name}が見つかります。`;
   return {
-    title:
-      "メンズコスメおすすめランキング【2026年最新】洗顔・化粧水・乳液TOP10",
-    description:
-      "Amazon口コミをAIが分析して決定したメンズコスメランキング。洗顔料・化粧水・乳液・オールインワンなどカテゴリ別TOP10を毎月更新。本当に評価が高いアイテムだけ厳選。",
-    // ?category= の旧URLはカテゴリ別ランキングの実ページに正規化
-    alternates: { canonical: category ? `/ranking/${category}` : "/ranking" },
+    title,
+    description,
+    alternates: { canonical: `https://oreno-cosme.com/ranking/${category.slug}` },
   };
 }
 
-export default async function RankingPage(props: PageProps<"/ranking">) {
-  const searchParams = await props.searchParams;
-  const categorySlug =
-    typeof searchParams.category === "string" ? searchParams.category : null;
-
-  const [allCategories, products] = await Promise.all([
-    getCategories(),
-    categorySlug
-      ? getRankedProducts(categorySlug)
-      : getRankedProducts(),
+export default async function CategoryRankingPage(
+  props: PageProps<"/ranking/[category]">
+) {
+  const { category: slug } = await props.params;
+  const [category, products] = await Promise.all([
+    findCategory(slug),
+    getRankedProducts(slug),
   ]);
 
-  const tabs = [
-    { label: "全体", slug: null },
-    ...allCategories.map((cat) => ({ label: cat.name, slug: cat.slug })),
-  ];
+  if (!category) notFound();
+
+  const allCategories = await getCategories();
+  const otherCategories = allCategories.filter((c) => c.slug !== slug);
 
   const itemListJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "メンズコスメ おすすめランキング",
+    name: `${category.name}のおすすめランキング`,
     numberOfItems: products.length,
     itemListElement: products.map((p, i) => ({
       "@type": "ListItem",
@@ -50,53 +58,85 @@ export default async function RankingPage(props: PageProps<"/ranking">) {
     })),
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "トップ", item: "https://oreno-cosme.com" },
+      { "@type": "ListItem", position: 2, name: "ランキング", item: "https://oreno-cosme.com/ranking" },
+      { "@type": "ListItem", position: 3, name: category.name, item: `https://oreno-cosme.com/ranking/${category.slug}` },
+    ],
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <nav className="text-xs text-foreground-muted flex items-center gap-1 flex-wrap">
+          <Link href="/" className="hover:text-foreground transition-colors">トップ</Link>
+          <span>/</span>
+          <Link href="/ranking" className="hover:text-foreground transition-colors">ランキング</Link>
+          <span>/</span>
+          <span className="text-foreground">{category.name}</span>
+        </nav>
+      </div>
+
       <section className="bg-background-secondary py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-foreground mb-2 font-brush">
-            メンズコスメ おすすめランキング【2026年】
+          <h1 className="text-3xl font-bold text-foreground mb-3 font-brush">
+            {category.name}のおすすめランキング【2026年】
           </h1>
-          <p className="text-sm text-foreground-muted">
-            Amazon評価が高いメンズコスメをカテゴリ別に紹介
+          <p className="text-sm text-foreground-muted leading-relaxed max-w-3xl">
+            メンズ{category.name}を、Amazonのレビュー評価が高い順にランキングしました。
+            口コミ評価が高く、レビュー件数の多い本当に支持されているアイテムだけを厳選。
+            各商品のメリット・デメリットはAIが口コミを分析して要約しています。
+            価格や評価を比較して、自分に合う{category.name}を見つけてください。
           </p>
         </div>
       </section>
 
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* カテゴリ切り替え */}
           <div className="flex gap-2 overflow-x-auto pb-4 mb-8 -mx-4 px-4 sm:mx-0 sm:px-0">
-            {tabs.map((tab) => (
+            <Link
+              href="/ranking"
+              className="shrink-0 px-4 py-2 text-sm rounded-full border bg-white text-foreground-muted border-border hover:border-foreground hover:text-foreground transition-colors"
+            >
+              全体
+            </Link>
+            {allCategories.map((cat) => (
               <Link
-                key={tab.slug ?? "all"}
-                href={tab.slug ? `/ranking/${tab.slug}` : "/ranking"}
+                key={cat.slug}
+                href={`/ranking/${cat.slug}`}
                 className={`shrink-0 px-4 py-2 text-sm rounded-full border transition-colors ${
-                  categorySlug === tab.slug
+                  cat.slug === slug
                     ? "bg-foreground text-white border-foreground font-medium"
                     : "bg-white text-foreground-muted border-border hover:border-foreground hover:text-foreground"
                 }`}
               >
-                {tab.label}
+                {cat.name}
               </Link>
             ))}
           </div>
 
           {products.length === 0 ? (
             <div className="text-center py-20">
-              <p className="text-foreground-muted">
-                データ集計中です
-              </p>
+              <p className="text-foreground-muted">データ集計中です</p>
             </div>
           ) : (
             <div className="space-y-4">
               {products.map((product, index) => {
                 const rank = index + 1;
                 const isTop3 = rank <= 3;
-
                 return (
                   <Link
                     key={product.id}
@@ -145,15 +185,14 @@ export default async function RankingPage(props: PageProps<"/ranking">) {
                               {product.brands.name}
                             </p>
                           )}
-                          <h3
+                          <h2
                             className={`font-bold text-foreground leading-tight ${
                               isTop3 ? "text-base sm:text-lg" : "text-sm sm:text-base"
                             }`}
                           >
                             {product.name}
-                          </h3>
+                          </h2>
                         </div>
-
                         {product.price != null && (
                           <p
                             className={`shrink-0 font-bold text-foreground ${
@@ -167,18 +206,10 @@ export default async function RankingPage(props: PageProps<"/ranking">) {
 
                       <div className="flex items-center gap-2 mt-1">
                         <div className="flex items-center gap-1">
-                          <svg
-                            width="14"
-                            height="14"
-                            viewBox="0 0 24 24"
-                            fill="#111"
-                            stroke="none"
-                          >
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="#111" stroke="none">
                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                           </svg>
-                          <span className="text-sm font-medium">
-                            {product.amazon_rating}
-                          </span>
+                          <span className="text-sm font-medium">{product.amazon_rating}</span>
                         </div>
                         {product.amazon_review_count != null && (
                           <span className="text-xs text-foreground-muted">
@@ -187,26 +218,38 @@ export default async function RankingPage(props: PageProps<"/ranking">) {
                         )}
                       </div>
 
-                      {product.ai_review_pros &&
-                        product.ai_review_pros.length > 0 && (
-                          <ul className="mt-2 hidden sm:flex flex-wrap gap-x-4 gap-y-1">
-                            {product.ai_review_pros.map((pro, i) => (
-                              <li
-                                key={i}
-                                className="text-xs text-foreground-muted"
-                              >
-                                <span className="text-foreground mr-1">+</span>
-                                {pro}
-                              </li>
-                            ))}
-                          </ul>
-                        )}
+                      {product.ai_review_pros && product.ai_review_pros.length > 0 && (
+                        <ul className="mt-2 hidden sm:flex flex-wrap gap-x-4 gap-y-1">
+                          {product.ai_review_pros.map((pro, i) => (
+                            <li key={i} className="text-xs text-foreground-muted">
+                              <span className="text-foreground mr-1">+</span>
+                              {pro}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </div>
                   </Link>
                 );
               })}
             </div>
           )}
+
+          {/* 他カテゴリ導線 */}
+          <nav className="mt-12 pt-8 border-t border-border">
+            <h2 className="text-sm font-bold text-foreground mb-3">他のカテゴリのランキング</h2>
+            <div className="flex flex-wrap gap-3">
+              {otherCategories.map((cat) => (
+                <Link
+                  key={cat.slug}
+                  href={`/ranking/${cat.slug}`}
+                  className="text-sm px-4 py-2 border border-border rounded-full text-foreground hover:border-foreground transition-colors"
+                >
+                  {cat.name}ランキング →
+                </Link>
+              ))}
+            </div>
+          </nav>
         </div>
       </section>
     </>

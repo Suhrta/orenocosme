@@ -4,6 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProductBySlug, getProducts } from "@/lib/data";
 
+export const revalidate = 3600;
+
 export async function generateStaticParams() {
   const products = await getProducts();
   return products.map((p) => ({ slug: p.slug }));
@@ -17,14 +19,17 @@ export async function generateMetadata(
   if (!product) return {};
 
   const brandName = product.brands?.name;
-  const title = brandName
-    ? `${product.name} | ${brandName}`
-    : product.name;
-  const description = `${product.name}の口コミ・評判をAI分析。メリット・デメリットをわかりやすく紹介。`;
+  const categoryName = product.categories?.name;
+  const title = `${brandName ? brandName + " " : ""}${product.name}の口コミ・評判${categoryName ? `｜${categoryName}` : ""}【2026年】`;
+  const pros = product.ai_review_pros?.slice(0, 2).join("、");
+  const description = `${brandName ? brandName + "の" : ""}${product.name}の口コミ・評判をAI分析。${pros ? `${pros}など、` : ""}メリット・デメリット・価格・Amazon評価をまとめました。`;
 
   return {
     title,
     description,
+    alternates: {
+      canonical: `https://oreno-cosme.com/products/${product.slug}`,
+    },
     openGraph: {
       title: `${title} | オレのコスメ`,
       description,
@@ -78,29 +83,24 @@ export default async function ProductDetailPage(
     }),
   };
 
+  const breadcrumbTrail = [
+    { name: "トップ", item: "https://oreno-cosme.com" },
+    { name: "商品一覧", item: "https://oreno-cosme.com/products" },
+    ...(category
+      ? [{ name: category.name, item: `https://oreno-cosme.com/ranking/${category.slug}` }]
+      : []),
+    { name: product.name, item: productUrl },
+  ];
+
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "トップ",
-        item: "https://oreno-cosme.com",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "商品一覧",
-        item: "https://oreno-cosme.com/products",
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: product.name,
-        item: productUrl,
-      },
-    ],
+    itemListElement: breadcrumbTrail.map((b, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: b.name,
+      item: b.item,
+    })),
   };
 
   return (
@@ -126,6 +126,17 @@ export default async function ProductDetailPage(
             商品一覧
           </Link>
           <span>/</span>
+          {category && (
+            <>
+              <Link
+                href={`/ranking/${category.slug}`}
+                className="hover:text-foreground transition-colors"
+              >
+                {category.name}
+              </Link>
+              <span>/</span>
+            </>
+          )}
           <span className="text-foreground">{product.name}</span>
         </nav>
       </div>
@@ -150,7 +161,7 @@ export default async function ProductDetailPage(
           <div>
             {brand && (
               <Link
-                href="/brands"
+                href={`/products?brand=${brand.slug}`}
                 className="text-sm text-foreground-muted hover:text-foreground transition-colors"
               >
                 {brand.name}
@@ -346,6 +357,31 @@ export default async function ProductDetailPage(
             )}
           </div>
         </div>
+
+        <nav className="mt-12 pt-8 border-t border-border flex flex-wrap gap-3">
+          {category && (
+            <Link
+              href={`/ranking/${category.slug}`}
+              className="text-sm px-4 py-2 border border-border rounded-full text-foreground hover:border-foreground transition-colors"
+            >
+              {category.name}のおすすめランキング →
+            </Link>
+          )}
+          {brand && (
+            <Link
+              href={`/products?brand=${brand.slug}`}
+              className="text-sm px-4 py-2 border border-border rounded-full text-foreground hover:border-foreground transition-colors"
+            >
+              {brand.name}の商品一覧 →
+            </Link>
+          )}
+          <Link
+            href="/ranking"
+            className="text-sm px-4 py-2 border border-border rounded-full text-foreground hover:border-foreground transition-colors"
+          >
+            メンズコスメ総合ランキング →
+          </Link>
+        </nav>
       </section>
     </>
   );
